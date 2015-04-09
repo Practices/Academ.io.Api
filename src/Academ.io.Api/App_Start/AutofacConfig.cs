@@ -2,6 +2,8 @@
 using System.Web.Http;
 using Academ.io.Api.Security.Contexts;
 using Academ.io.Api.Security.Repositories;
+using Academ.io.Data.Contexts;
+using Academ.io.Data.Repositories;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Owin;
@@ -31,7 +33,10 @@ namespace Academ.io.Api
         private static void RegisterComponents(ContainerBuilder builder)
         {
             builder.RegisterType<ApplicationContext>().SingleInstance();
+            builder.RegisterType<StudentContext>().SingleInstance();
             builder.RegisterType<UserRepository>().As<IUserRepository>().AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterType<StudentRepository>().As<IStudentRepository>().AsImplementedInterfaces().InstancePerRequest();
+
         }
     }
 }
