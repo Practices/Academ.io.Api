@@ -7,7 +7,7 @@ using Group = System.Text.RegularExpressions.Group;
 
 namespace Academ.io.University.Api.Services.Structuries
 {
-    internal class StructureService: BaseService, IStructureService
+    internal class StructureServiceApi: BaseServiceApi, IStructureServiceApi
     {
         private const string StructureUrl = "/service/structure/structure.xml";
 

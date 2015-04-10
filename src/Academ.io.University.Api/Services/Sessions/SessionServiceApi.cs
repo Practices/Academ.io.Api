@@ -7,7 +7,7 @@ using AutoMapper;
 
 namespace Academ.io.University.Api.Services.Sessions
 {
-    public class SessionService:BaseService
+    public class SessionServiceApi:BaseServiceApi, ISessionServiceApi
     {
         private const string SessionUrl = "/modules/session/service/xml/student-marks/";
 

@@ -2,11 +2,11 @@
 
 namespace Academ.io.University.Api.Services
 {
-    public class BaseService
+    public class BaseServiceApi
     {
         private const string BaseUrl = "https://eu.bmstu.ru";
 
-        public BaseService()
+        public BaseServiceApi()
         {
             Client = new RestClient(BaseUrl);
         }

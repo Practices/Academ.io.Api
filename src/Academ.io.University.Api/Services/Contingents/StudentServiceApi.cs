@@ -8,7 +8,7 @@ using AutoMapper;
 
 namespace Academ.io.University.Api.Services.Contingents
 {
-    public class StudentService :BaseService, IStudentService
+    public class StudentServiceApi :BaseServiceApi, IStudentServiceApi
     {
         private const string StudentUrl = "/modules/contingent/service/xml/students/";
 

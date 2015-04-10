@@ -59,12 +59,13 @@
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\StudentSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BaseService.cs" />
-    <Compile Include="Services\Contingents\IStudentService.cs" />
-    <Compile Include="Services\Contingents\StudentService.cs" />
-    <Compile Include="Services\Sessions\SessionService.cs" />
-    <Compile Include="Services\Structuries\IStructureService.cs" />
-    <Compile Include="Services\Structuries\StructureService.cs" />
+    <Compile Include="Services\BaseServiceApi.cs" />
+    <Compile Include="Services\Contingents\IStudentServiceApi.cs" />
+    <Compile Include="Services\Contingents\StudentServiceApi.cs" />
+    <Compile Include="Services\Sessions\ISessionServiceApi.cs" />
+    <Compile Include="Services\Sessions\SessionServiceApi.cs" />
+    <Compile Include="Services\Structuries\IStructureServiceApi.cs" />
+    <Compile Include="Services\Structuries\StructureServiceApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\Faculties\" />

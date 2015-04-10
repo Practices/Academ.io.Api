@@ -3,7 +3,7 @@ using Academ.io.Models;
 
 namespace Academ.io.University.Api.Services.Contingents
 {
-    public interface IStudentService
+    public interface IStudentServiceApi
     {
         IEnumerable<Student> GetStudentsByContainer(string value);
         IEnumerable<Student> GetStudentById(string value);
