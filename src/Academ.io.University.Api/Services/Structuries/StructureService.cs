@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Academ.io.Models;
+using Academ.io.University.Api.Models;
 using AcademicAnalysis.ElectronicUniversityServices.Models;
 using AutoMapper;
 using Group = System.Text.RegularExpressions.Group;

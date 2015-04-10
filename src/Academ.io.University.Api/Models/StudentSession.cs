@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using AcademicAnalysis.ElectronicUniversityServices.Models;
 using RestSharp.Deserializers;
 
-namespace AcademicAnalysis.ElectronicUniversityServices.Models
+namespace Academ.io.University.Api.Models
 {
     [DeserializeAs(Name = "student")]
     public class StudentSession

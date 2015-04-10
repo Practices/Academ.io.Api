@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Academ.io.Models;
 using Academ.io.University.Api.Converters;
+using Academ.io.University.Api.Models;
 using AcademicAnalysis.ElectronicUniversityServices.Models;
 using AutoMapper;
 
