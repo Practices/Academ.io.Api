@@ -46,10 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contexts\SessionContext.cs" />
     <Compile Include="Contexts\StudentContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IMarkRepository.cs" />
     <Compile Include="Repositories\IStudentRepository.cs" />
+    <Compile Include="Repositories\MarkRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
+    <Compile Include="SessionContextMigrations\201504121557390_Init.cs" />
+    <Compile Include="SessionContextMigrations\201504121557390_Init.Designer.cs">
+      <DependentUpon>201504121557390_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SessionContextMigrations\Configuration.cs" />
     <Compile Include="StudentContextMigrations\201504091005235_Init.cs" />
     <Compile Include="StudentContextMigrations\201504091005235_Init.Designer.cs">
       <DependentUpon>201504091005235_Init.cs</DependentUpon>
@@ -68,6 +76,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="SessionContextMigrations\201504121557390_Init.resx">
+      <DependentUpon>201504121557390_Init.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StudentContextMigrations\201504091005235_Init.resx">
       <DependentUpon>201504091005235_Init.cs</DependentUpon>
     </EmbeddedResource>
