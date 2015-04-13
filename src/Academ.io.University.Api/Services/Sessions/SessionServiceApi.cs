@@ -11,22 +11,20 @@ namespace Academ.io.University.Api.Services.Sessions
     {
         private const string SessionUrl = "/modules/session/service/xml/student-marks/";
 
-        public IEnumerable<Session> GetSessionsByStudent(Guid id)
+        public List<DisciplineModel> GetSessionsByStudent(Guid id)
         {
             return this.GetSessionsByStudent(id.ToString());
         }
 
-        public IEnumerable<Session> GetSessionsByStudent(string id)
+        public List<DisciplineModel> GetSessionsByStudent(string id)
         {
             var request = GetRequest(SessionUrl);
             request.AddParameter("student_uuid[]", id);
             var response = Client.Execute<SessionServiceModel>(request);
-            var firstOrDefault = response.Data.Students.FirstOrDefault();
-            if(firstOrDefault != null)
+            var studentSession = response.Data.Students.FirstOrDefault();
+            if(studentSession != null)
             {
-                Mapper.CreateMap<DisciplineModel, Session>();
-                var sessions = Mapper.Map<IEnumerable<DisciplineModel>, IEnumerable<Session>>(firstOrDefault.Disciplines);
-                return sessions;
+                return studentSession.Disciplines;
             }
             return null;
         }
