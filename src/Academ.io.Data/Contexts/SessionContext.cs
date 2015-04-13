@@ -5,7 +5,7 @@ namespace Academ.io.Data.Contexts
 {
     public class SessionContext: DbContext
     {
-        protected SessionContext()
+        public SessionContext()
         {
             
         }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Academ.io.Data.Contexts;
 using Academ.io.Models;
 
@@ -17,12 +17,12 @@ namespace Academ.io.Data.Repositories
 
         public Mark GetMark(int mark, int type)
         {
-            return this.sessionContext.Marks.Include("TestType").Where(x => x.GradeMark == mark).FirstOrDefault(x => x.TestType.TestTypeId == type);
-        } 
+            return this.sessionContext.Marks.Include(x => x.TestType).Where(x => x.GradeMark == mark).FirstOrDefault(x => x.TestType.TestTypeId == type);
+        }
 
         public List<Mark> GetMarks()
         {
-            return this.sessionContext.Marks.ToList();
+            return this.sessionContext.Marks.Include(x => x.TestType).ToList();
         }
 
         public List<TestType> GetTestTypes()

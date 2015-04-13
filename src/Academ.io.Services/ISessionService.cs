@@ -6,6 +6,6 @@ namespace Academ.io.Services
 {
     public interface ISessionService
     {
-        IEnumerable<Session> GetSessions(Guid studentId);
+        List<Discipline> GetSessions(Guid studentId);
     }
 }
