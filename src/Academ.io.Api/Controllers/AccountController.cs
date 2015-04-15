@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Academ.io.Api.Models;
@@ -39,6 +40,13 @@ namespace Academ.io.Api.Controllers
 
             return Ok();
         }
+
+        [AllowAnonymous]
+        public Task<List<ApplicationUser>> GetUsers()
+        {
+            return this.userRepository.GetUsers();
+        }
+ 
 
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {

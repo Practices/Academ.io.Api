@@ -22,11 +22,9 @@ namespace Academ.io.Services
             Mapper.AssertConfigurationIsValid();
         }
 
-        public List<Discipline> GetSessions(Guid studentId)
+        public List<Discipline> GetSession(Guid studentId)
         {
             var disciplines = this.sessionServiceApi.GetSessionsByStudent(studentId);
-
-            //            var marks = markRepository.GetMarks();
 
             var result = FillDisciplines(disciplines);
 

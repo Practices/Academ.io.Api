@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Academ.io.Api.Models;
 using Academ.io.Api.Security.Models;
@@ -10,5 +11,6 @@ namespace Academ.io.Api.Security.Repositories
     {
         Task<IdentityResult> RegisterUser(RegisterModel model);
         Task<ApplicationUser> FindUser(string userName, string password);
+        Task<List<ApplicationUser>> GetUsers();
     }
 }

@@ -96,7 +96,7 @@ namespace Academ.io.Services.Tests
                                  }
                              });
             //act
-            var result = sessionService.GetSessions(new Guid());
+            var result = sessionService.GetSession(new Guid());
 
             //assert
             Assert.IsInstanceOfType(result[0],typeof(Discipline));

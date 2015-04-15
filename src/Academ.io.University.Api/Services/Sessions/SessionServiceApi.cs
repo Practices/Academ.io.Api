@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Academ.io.Models;
 using Academ.io.University.Api.Models;
-using AutoMapper;
 
 namespace Academ.io.University.Api.Services.Sessions
 {
@@ -16,17 +13,35 @@ namespace Academ.io.University.Api.Services.Sessions
             return this.GetSessionsByStudent(id.ToString());
         }
 
+//        public List<DisciplineModel> GetSessionsByStudent(string id)
+//        {
+//            var request = GetRequest(SessionUrl);
+//            request.AddParameter("student_uuid[]", id);
+//            var response = Client.Execute<SessionServiceModel>(request);
+//            var studentSession = response.Data.Students.FirstOrDefault();
+//            if(studentSession != null)
+//            {
+//                return studentSession.Disciplines;
+//            }
+//            return null;
+//        }
+
         public List<DisciplineModel> GetSessionsByStudent(string id)
         {
-            var request = GetRequest(SessionUrl);
-            request.AddParameter("student_uuid[]", id);
-            var response = Client.Execute<SessionServiceModel>(request);
-            var studentSession = response.Data.Students.FirstOrDefault();
-            if(studentSession != null)
+            return new List<DisciplineModel>
             {
-                return studentSession.Disciplines;
-            }
-            return null;
+                new DisciplineModel
+                {
+                    DisciplineId = new Guid("be0483a0-35a9-11e3-830f-005056960017"),
+                    DisciplineName = "Курсовая работа - Надежность и достоверность",
+                    DisciplineDepartment = "ИУ5",
+                    Mark = 5,
+                    Audlek = 51,
+                    Term = 11,
+                    TestDate = new DateTime(2014, 12, 22),
+                    TestType = 3
+                }
+            };
         }
     }
 }

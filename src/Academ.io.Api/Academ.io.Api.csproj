@@ -157,6 +157,14 @@
       <Project>{96D4A6CA-A175-444D-B974-7F5DE3220B5A}</Project>
       <Name>Academ.io.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Academ.io.Services\Academ.io.Services.csproj">
+      <Project>{BFD2E414-A608-4939-8226-3F3CB84D7868}</Project>
+      <Name>Academ.io.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Academ.io.University.Api\Academ.io.University.Api.csproj">
+      <Project>{7278F4FC-BBFB-4E47-9417-63B905B4A6A4}</Project>
+      <Name>Academ.io.University.Api</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

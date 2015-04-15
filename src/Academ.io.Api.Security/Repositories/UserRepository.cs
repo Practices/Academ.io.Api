@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 using Academ.io.Api.Models;
 using Academ.io.Api.Security.Contexts;
 using Academ.io.Api.Security.Models;
@@ -35,6 +38,11 @@ namespace Academ.io.Api.Security.Repositories
 
             return user;
         }
+
+        public async Task<List<ApplicationUser>> GetUsers()
+        {
+            return await this.userManager.Users.ToListAsync();
+        } 
 
         public void Dispose()
         {
