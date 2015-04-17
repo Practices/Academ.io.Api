@@ -20,9 +20,9 @@ namespace Academ.io.Api.Controllers
         }
 
         [Authorize]
-        public IEnumerable<Discipline> GetSession(int id)
+        public IEnumerable<Discipline> GetSession(string id)
         {
-            return sessionService.GetSession(new Guid());
+            return sessionService.GetSession(new Guid(id));
         }
     }
 }
