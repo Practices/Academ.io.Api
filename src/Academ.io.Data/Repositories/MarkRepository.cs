@@ -17,7 +17,7 @@ namespace Academ.io.Data.Repositories
 
         public Mark GetMark(int mark, int type)
         {
-            return this.sessionContext.Marks.Include(x => x.TestType).Where(x => x.GradeMark == mark).FirstOrDefault(x => x.TestType.TestTypeId == type);
+            return this.sessionContext.Marks.Include(x => x.TestType).Where(x => x.Grade == mark).FirstOrDefault(x => x.TestType.TestTypeId == type);
         }
 
         public List<Mark> GetMarks()

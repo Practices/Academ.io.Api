@@ -1,28 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
+using Academ.io.Api.Models;
 using Academ.io.Models;
 using Academ.io.Services;
+using AutoMapper;
 
 namespace Academ.io.Api.Controllers
 {
     public class SessionController: ApiController
     {
         private readonly ISessionService sessionService;
-         
+
         public SessionController(ISessionService sessionService)
         {
             this.sessionService = sessionService;
+
+            Mapper.CreateMap<Discipline, DisciplineDto>().ForMember(o => o.TestTypeId, m => m.MapFrom(s => s.TestType.TestTypeId));
         }
 
         [Authorize]
-        public IEnumerable<Discipline> GetSession(string id)
+        public IEnumerable<DisciplineDto> GetSession(string id)
         {
-            return sessionService.GetSession(new Guid(id));
+            var disciplines = sessionService.GetSession(new Guid(id));
+
+            var disciplineViewModels = Mapper.Map<IEnumerable<Discipline>, IEnumerable<DisciplineDto>>(disciplines);
+            
+            return disciplineViewModels;
         }
     }
 }

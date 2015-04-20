@@ -24,44 +24,6 @@ namespace Academ.io.Services.Tests
             sessionService = new SessionService(sessionServiceApi.Object, markRepository.Object);
         }
 
-//        [TestMethod]
-//        public void ShouldBeReturnDiscipline()
-//        {
-//            //arrange
-//            markRepository.Setup(x => x.GetMark(It.IsAny<int>(), It.IsAny<int>()))
-//                          .Returns(new Mark
-//                          {
-//                              Title = "Отлично",
-//                              TitleShort = "Отл",
-//                              GradeMark = 5,
-//                              TestType = new TestType
-//                              {
-//                                  TestTypeId = 3,
-//                                  Title = "Курсовой проект",
-//                                  TitleShort = "Кур"
-//                              }
-//                          });
-//
-//            var disciplineModel = new DisciplineModel
-//            {
-//                DisciplineId = new Guid("be0483a0-35a9-11e3-830f-005056960017"),
-//                DisciplineName = "Курсовая работа - Надежность и достоверность",
-//                DisciplineDepartment = "ИУ5",
-//                Mark = 5,
-//                Audlek = 51,
-//                Term = 11,
-//                TestDate = new DateTime(2014, 12, 22),
-//                TestType = 3
-//            };
-//
-//            //act
-//            var result = sessionService.ConvertDiscipline(disciplineModel);
-//
-//            //assert
-//            Assert.AreEqual(disciplineModel.Mark, result.Mark.GradeMark);
-//            Assert.AreEqual(disciplineModel.DisciplineId, result.DisciplineId);
-//        }
-
         [TestMethod]
         public void ShouldBeReturnListDiscipline()
         {
@@ -69,14 +31,14 @@ namespace Academ.io.Services.Tests
             markRepository.Setup(x => x.GetMark(It.IsAny<int>(), It.IsAny<int>()))
                           .Returns(new Mark
                           {
-                              Title = "Отлично",
-                              TitleShort = "Отл",
-                              GradeMark = 5,
+                              Name = "Отлично",
+                              ShortName = "Отл",
+                              Grade = 5,
                               TestType = new TestType
                               {
                                   TestTypeId = 3,
-                                  Title = "Курсовой проект",
-                                  TitleShort = "Кур"
+                                  Name = "Курсовой проект",
+                                  ShortName = "Кур"
                               }
                           });
 
@@ -96,12 +58,13 @@ namespace Academ.io.Services.Tests
                                  }
                              });
             //act
-            var result = sessionService.GetSession(new Guid());
+            var result = new List<Discipline>(sessionService.GetSession(new Guid()));
 
             //assert
             Assert.IsInstanceOfType(result[0],typeof(Discipline));
             Assert.AreEqual(result[0].DisciplineId, new Guid("be0483a0-35a9-11e3-830f-005056960017"));
-            Assert.AreEqual(result[0].Mark.GradeMark,5);
+            Assert.AreEqual(result[0].Mark.Grade,5);
+            Assert.AreEqual(result[0].TestType.TestTypeId,3);
         }
     }
 }

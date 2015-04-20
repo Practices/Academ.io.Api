@@ -57,6 +57,10 @@
     <Compile Include="SessionContextMigrations\201504121557390_Init.Designer.cs">
       <DependentUpon>201504121557390_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="SessionContextMigrations\201504181935229_RefactoringMarkAndTestType.cs" />
+    <Compile Include="SessionContextMigrations\201504181935229_RefactoringMarkAndTestType.Designer.cs">
+      <DependentUpon>201504181935229_RefactoringMarkAndTestType.cs</DependentUpon>
+    </Compile>
     <Compile Include="SessionContextMigrations\Configuration.cs" />
     <Compile Include="StudentContextMigrations\201504091005235_Init.cs" />
     <Compile Include="StudentContextMigrations\201504091005235_Init.Designer.cs">
@@ -78,6 +82,9 @@
   <ItemGroup>
     <EmbeddedResource Include="SessionContextMigrations\201504121557390_Init.resx">
       <DependentUpon>201504121557390_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SessionContextMigrations\201504181935229_RefactoringMarkAndTestType.resx">
+      <DependentUpon>201504181935229_RefactoringMarkAndTestType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentContextMigrations\201504091005235_Init.resx">
       <DependentUpon>201504091005235_Init.cs</DependentUpon>

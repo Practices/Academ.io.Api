@@ -23,16 +23,16 @@ namespace Academ.io.Services.Tests
             var testType = new TestType
             {
                 TestTypeId = 5,
-                Title = "Курсовой проект (недиф)",
-                TitleShort = "Кур"
+                Name = "Курсовой проект (недиф)",
+                ShortName = "Кур"
             };
 
             var mark = new Mark
             {
                 MarkId = 13,
-                Title = "Зачтено",
-                TitleShort = "Зчт",
-                GradeMark = 3,
+                Name = "Зачтено",
+                ShortName = "Зчт",
+                Grade = 3,
                 TestType = testType
             };
 

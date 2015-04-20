@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Academ.io.Data.Repositories;
 using Academ.io.Models;
 using Academ.io.University.Api.Models;
@@ -19,36 +20,32 @@ namespace Academ.io.Services
             this.markRepository = markRepository;
 
             Mapper.CreateMap<DisciplineModel, Discipline>().ForMember(dest => dest.Mark, opt => opt.Ignore());
+            Mapper.CreateMap<DisciplineModel, Discipline>().ForMember(dest => dest.TestType, opt => opt.Ignore());
             Mapper.AssertConfigurationIsValid();
         }
 
-        public List<Discipline> GetSession(Guid studentId)
+        public IEnumerable<Discipline> GetSession(Guid studentId)
         {
             var disciplines = this.sessionServiceApi.GetSessionsByStudent(studentId);
 
-            var result = FillDisciplines(disciplines);
+            var result = FillItems(disciplines);
 
             return result;
         }
 
-        private List<Discipline> FillDisciplines(List<DisciplineModel> disciplines)
+        private List<Discipline> FillItems(List<DisciplineModel> disciplines)
         {
-            var result = new List<Discipline>();
-
-            foreach(var item in disciplines)
-            {
-                result.Add(ConvertDiscipline(item));
-            }
-            return result;
+            return disciplines.Select(MappingItem).ToList();
         }
 
-        private Discipline ConvertDiscipline(DisciplineModel disciplineModel)
+        private Discipline MappingItem(DisciplineModel disciplineModel)
         {
             var mark = this.markRepository.GetMark(disciplineModel.Mark, disciplineModel.TestType);
 
             var discipline = Mapper.Map<DisciplineModel, Discipline>(disciplineModel);
 
             discipline.Mark = mark;
+            discipline.TestType = mark.TestType;
 
             return discipline;
         }
