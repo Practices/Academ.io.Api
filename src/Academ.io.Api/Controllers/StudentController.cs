@@ -7,23 +7,33 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Academ.io.Data.Repositories;
 using Academ.io.Models;
+using Academ.io.Services.Students;
 
 namespace Academ.io.Api.Controllers
 {
     [RoutePrefix("api/student")]
     public class StudentController: ApiController
     {
-        private readonly IStudentRepository studentRepository;
+        private readonly IStudentService studentService;
 
-        public StudentController(IStudentRepository studentRepository)
+        public StudentController(IStudentService studentService)
         {
-            this.studentRepository = studentRepository;
+            this.studentService = studentService;
         }
 
         [Authorize]
         public Task<List<Student>> Get()
         {
-            return studentRepository.GetStudents();
+            string userEmail = RequestContext.Principal.Identity.Name;
+
+            return null;
+
+        }
+        
+        [Authorize]
+        public IHttpActionResult Get(string name)
+        {
+            return Ok();
         }
     }
 }

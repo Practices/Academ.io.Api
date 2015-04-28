@@ -68,6 +68,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationContextMigrations\201504271624143_Init.cs" />
+    <Compile Include="ApplicationContextMigrations\201504271624143_Init.Designer.cs">
+      <DependentUpon>201504271624143_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationContextMigrations\201504271628091_AddStudents.cs" />
+    <Compile Include="ApplicationContextMigrations\201504271628091_AddStudents.Designer.cs">
+      <DependentUpon>201504271628091_AddStudents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationContextMigrations\201504271957199_DeleteStudentsAndAddFavourite.cs" />
+    <Compile Include="ApplicationContextMigrations\201504271957199_DeleteStudentsAndAddFavourite.Designer.cs">
+      <DependentUpon>201504271957199_DeleteStudentsAndAddFavourite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationContextMigrations\Configuration.cs" />
     <Compile Include="Contexts\ApplicationContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,7 +88,17 @@
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationContextMigrations\201504271624143_Init.resx">
+      <DependentUpon>201504271624143_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationContextMigrations\201504271628091_AddStudents.resx">
+      <DependentUpon>201504271628091_AddStudents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationContextMigrations\201504271957199_DeleteStudentsAndAddFavourite.resx">
+      <DependentUpon>201504271957199_DeleteStudentsAndAddFavourite.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
@@ -83,6 +106,10 @@
     <ProjectReference Include="..\Academ.io.Api.Models\Academ.io.Api.Models.csproj">
       <Project>{8D99DF67-5ACB-4C29-9343-BD1E08F1E53B}</Project>
       <Name>Academ.io.Api.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Academ.io.Models\Academ.io.Models.csproj">
+      <Project>{96D4A6CA-A175-444D-B974-7F5DE3220B5A}</Project>
+      <Name>Academ.io.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

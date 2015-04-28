@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Linq;
+using System.Xml.Schema;
 using Academ.io.Models;
 
 namespace Academ.io.Data.StudentContextMigrations
@@ -15,6 +19,8 @@ namespace Academ.io.Data.StudentContextMigrations
 
         protected override void Seed(Contexts.StudentContext context)
         {
+            
+
             List<Student> students = new List<Student>
             {
                 new Student
@@ -25,7 +31,7 @@ namespace Academ.io.Data.StudentContextMigrations
                     Lastname = "Тестов",
                     Birthdate = new DateTime(1992, 2, 22),
                     Cardnumber = "09Ц002",
-                    Group = "ИУ5-122"
+                    Group = "ИУ5-122",
                 },
                 new Student
                 {
@@ -39,11 +45,21 @@ namespace Academ.io.Data.StudentContextMigrations
                 }
             };
 
+            var user = new AcademUser() { UserId = new Guid("8483d47b-38eb-4a03-bccc-56ea5be5e70b")};
+
             if(!context.Database.Exists())
             {
                 context.Students.AddRange(students);
                 context.SaveChanges();
             }
+
+            students = context.Students.ToList();
+
+            user.Students.Add(students[0]);
+
+            context.Users.Add(user);
+
+            context.SaveChanges();
         }
     }
 }

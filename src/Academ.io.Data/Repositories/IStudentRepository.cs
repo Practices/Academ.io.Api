@@ -6,6 +6,7 @@ namespace Academ.io.Data.Repositories
 {
     public interface IStudentRepository
     {
-        Task<List<Student>> GetStudents();
+        Task<List<Student>> GetStudentsByUserId();
+        Task<List<Student>> GetStudentsByName(string name);
     }
 }
