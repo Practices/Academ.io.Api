@@ -13,7 +13,7 @@ namespace Academ.io.Data.StudentContextMigrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201504091005235_Init"; }
+            get { return "201504290008543_Init"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
 using Academ.io.Data.Contexts;
@@ -27,35 +28,46 @@ namespace Academ.io.Data.Repositories
             return await context.Students.Where(x => x.Lastname == name).ToListAsync();
         }
 
-        public async Task<List<Student>> GetStudentsByUserId(string userId)
-        {
-            var id = new Guid(userId);
-            var user = await context.Users.Include(i => i.Students).SingleOrDefaultAsync(x => x.UserId == id);
-            return user.Students.ToList();
-        }
-
         public Student AddStudent(Student student, string userId)
         {
-            var id = new Guid(userId);
-            var user = context.Users.SingleOrDefault(x => x.UserId == id);
-            if(user != null)
+            var user = GetUser(userId);
+
+            if(user.Students.SingleOrDefault(x => x.StudentIdentity == student.StudentIdentity) == null)
             {
-                user = new AcademUser{UserId = id};
+                var studentAttach = context.Students.SingleOrDefault(x => x.StudentIdentity == student.StudentIdentity) ?? context.Students.Add(student);
+                user.Students.Add(studentAttach);
+                context.Users.AddOrUpdate(user);
+                context.SaveChanges();
+                return studentAttach;
             }
-
-            user.Students.Add(student);
-            context.Users.Add(user);
-            context.SaveChanges();
-
             return student;
         }
 
-        public void DeleteStudent(Student student,string userId )
+        public Student DeleteStudent(Student student, string userId)
         {
-            var id = new Guid(userId);
-            var user = context.Users.SingleOrDefault(x => x.UserId == id);
-            user.Students.Remove(student);
-            context.SaveChanges();
+            var user = GetUser(userId);
+            var studentAttach = user.Students.SingleOrDefault(x => x.StudentIdentity == student.StudentIdentity);
+            if(studentAttach != null)
+            {
+                user.Students.Remove(studentAttach);
+                context.SaveChanges();
+            }
+            return studentAttach;
+        }
+
+        public async Task<List<Student>> GetStudentsByUserId(string userId)
+        {
+            var user = GetUser(userId);
+            return user.Students.ToList();
+        }
+
+        private AcademUser GetUser(string id)
+        {
+            var userId = new Guid(id);
+            return context.Users.Include(x => x.Students).SingleOrDefault(x => x.UserId == userId) ?? context.Users.Add(new AcademUser
+            {
+                UserId = userId
+            });
         }
     }
 }

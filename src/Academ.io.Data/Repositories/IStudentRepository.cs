@@ -8,5 +8,7 @@ namespace Academ.io.Data.Repositories
     {
         Task<List<Student>> GetStudentsByUserId();
         Task<List<Student>> GetStudentsByName(string name);
+        Student AddStudent(Student student, string userId);
+        Student DeleteStudent(Student student, string userId);
     }
 }

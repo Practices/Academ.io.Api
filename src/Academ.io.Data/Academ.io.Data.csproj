@@ -62,9 +62,13 @@
       <DependentUpon>201504181935229_RefactoringMarkAndTestType.cs</DependentUpon>
     </Compile>
     <Compile Include="SessionContextMigrations\Configuration.cs" />
-    <Compile Include="StudentContextMigrations\201504091005235_Init.cs" />
-    <Compile Include="StudentContextMigrations\201504091005235_Init.Designer.cs">
-      <DependentUpon>201504091005235_Init.cs</DependentUpon>
+    <Compile Include="StudentContextMigrations\201504290008543_Init.cs" />
+    <Compile Include="StudentContextMigrations\201504290008543_Init.Designer.cs">
+      <DependentUpon>201504290008543_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentContextMigrations\201504291155448_AddStudentGuid.cs" />
+    <Compile Include="StudentContextMigrations\201504291155448_AddStudentGuid.Designer.cs">
+      <DependentUpon>201504291155448_AddStudentGuid.cs</DependentUpon>
     </Compile>
     <Compile Include="StudentContextMigrations\Configuration.cs" />
   </ItemGroup>
@@ -86,8 +90,11 @@
     <EmbeddedResource Include="SessionContextMigrations\201504181935229_RefactoringMarkAndTestType.resx">
       <DependentUpon>201504181935229_RefactoringMarkAndTestType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StudentContextMigrations\201504091005235_Init.resx">
-      <DependentUpon>201504091005235_Init.cs</DependentUpon>
+    <EmbeddedResource Include="StudentContextMigrations\201504290008543_Init.resx">
+      <DependentUpon>201504290008543_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentContextMigrations\201504291155448_AddStudentGuid.resx">
+      <DependentUpon>201504291155448_AddStudentGuid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

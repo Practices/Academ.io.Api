@@ -25,7 +25,7 @@ namespace Academ.io.Data.StudentContextMigrations
             {
                 new Student
                 {
-                    StudentId = new Guid("89889959-faa8-4ad1-abab-b63be64d1b6a"),
+                    StudentIdentity = new Guid("89889959-faa8-4ad1-abab-b63be64d1b6a"),
                     Firstname = "Тест",
                     Middlename = "Тестович",
                     Lastname = "Тестов",
@@ -35,7 +35,7 @@ namespace Academ.io.Data.StudentContextMigrations
                 },
                 new Student
                 {
-                    StudentId = new Guid("be83d0ef-86c0-4e53-aaf4-88e1afb1521e"),
+                    StudentIdentity = new Guid("be83d0ef-86c0-4e53-aaf4-88e1afb1521e"),
                     Firstname = "Сур",
                     Middlename = "Сурович",
                     Lastname = "Суров",
@@ -47,7 +47,7 @@ namespace Academ.io.Data.StudentContextMigrations
 
             var user = new AcademUser() { UserId = new Guid("8483d47b-38eb-4a03-bccc-56ea5be5e70b")};
 
-            if(!context.Database.Exists())
+            if(context.Database.Exists())
             {
                 context.Students.AddRange(students);
                 context.SaveChanges();

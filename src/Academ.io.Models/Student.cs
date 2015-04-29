@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 
 namespace Academ.io.Models
 {
     public class Student
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int StudentId { get; set; }
         private Collection<AcademUser> users;
-        public Guid StudentId { get; set; }
+        public Guid StudentIdentity { get; set; }
         public string Firstname { get; set; }
         public string Middlename { get; set; }
         public string Lastname { get; set; }
