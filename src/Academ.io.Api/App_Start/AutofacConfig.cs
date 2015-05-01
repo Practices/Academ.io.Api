@@ -1,10 +1,12 @@
 ﻿using System.Reflection;
 using System.Web.Http;
+using Academ.io.Api.Mappers;
 using Academ.io.Api.Security.Contexts;
 using Academ.io.Api.Security.Repositories;
 using Academ.io.Data.Contexts;
 using Academ.io.Data.Repositories;
 using Academ.io.Services;
+using Academ.io.Services.Students;
 using Academ.io.University.Api.Services.Sessions;
 using Autofac;
 using Autofac.Integration.WebApi;
@@ -17,6 +19,7 @@ namespace Academ.io.Api
         public static void Configure(IAppBuilder app, HttpConfiguration config)
         {
             ConfigureAutofacContainer(app, config);
+            AutoMapperConfiguration.Configure();
         }
 
         private static void ConfigureAutofacContainer(IAppBuilder app, HttpConfiguration config)
@@ -38,6 +41,7 @@ namespace Academ.io.Api
             builder.RegisterType<StudentContext>().SingleInstance();
             builder.RegisterType<SessionContext>().SingleInstance();
             builder.RegisterType<UserRepository>().As<IUserRepository>().AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterType<StudentService>().As<IStudentService>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<StudentRepository>().As<IStudentRepository>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<SessionService>().As<ISessionService>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<SessionServiceApi>().As<ISessionServiceApi>().AsImplementedInterfaces().InstancePerRequest();
