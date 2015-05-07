@@ -16,7 +16,7 @@ namespace Academ.io.Api.Mappers
 
         protected override void Configure()
         {
-            Mapper.CreateMap<Student, StudentDto>();
+            Mapper.CreateMap<Student, StudentViewModel>();
 
         }
     }

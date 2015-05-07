@@ -1,9 +1,10 @@
-﻿using System.Security.Claims;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Academ.io.Api.Security.Contexts;
 using Academ.io.Api.Security.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 
 namespace Academ.io.Api.Security.Providers
@@ -25,20 +26,29 @@ namespace Academ.io.Api.Security.Providers
 
             using(var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationContext())))
             {
-                IdentityUser user = await userManager.FindAsync(context.UserName, context.Password);
+                ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 
                 if(user == null)
                 {
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
+
+                var identity = await userManager.CreateIdentityAsync(user, context.Options.AuthenticationType);
+                AuthenticationProperties properties = CreateProperties(user.UserName);
+                AuthenticationTicket ticket = new AuthenticationTicket(identity,properties);
+
+                context.Validated(ticket);
             }
+        }
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
-
-            context.Validated(identity);
+        private AuthenticationProperties CreateProperties(string userName)
+        {
+            IDictionary<string, string> data = new Dictionary<string, string>
+            {
+                { "userName", userName }
+            };
+            return new AuthenticationProperties(data);
         }
     }
 }

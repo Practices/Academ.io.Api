@@ -12,5 +12,6 @@ namespace Academ.io.Api.Security.Repositories
         Task<IdentityResult> RegisterUser(RegisterModel model);
         Task<ApplicationUser> FindUser(string userName, string password);
         Task<List<ApplicationUser>> GetUsers();
+        ApplicationUser GetUser(string username);
     }
 }

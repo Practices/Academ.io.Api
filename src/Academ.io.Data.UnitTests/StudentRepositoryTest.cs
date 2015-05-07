@@ -36,7 +36,7 @@ namespace Academ.io.Data.UnitTests
 
             var userId = "88dfee0c-9849-4732-bcb5-4d8f88c47395";
 
-            var result = studentRepository.AddStudent(student, userId);
+            var result = studentRepository.AddStudent(new Guid(userId), student);
 
             Assert.AreEqual(result.StudentId,1);
         }
@@ -59,7 +59,7 @@ namespace Academ.io.Data.UnitTests
 
             var userId = "88dfee0c-9849-4732-bcb5-4d8f88c47395";
             //act
-            var result = studentRepository.DeleteStudent(student, userId);
+            var result = studentRepository.DeleteStudent(new Guid(userId), student.StudentId);
 
             //assert
             Assert.AreEqual(result.StudentIdentity,student.StudentIdentity);

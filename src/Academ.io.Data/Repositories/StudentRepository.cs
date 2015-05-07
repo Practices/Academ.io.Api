@@ -18,17 +18,18 @@ namespace Academ.io.Data.Repositories
             this.context = context;
         }
 
-        public async Task<List<Student>> GetStudentsByUserId()
+        public List<Student> GetStudentsByUserId(Guid userId)
         {
-            return await context.Students.ToListAsync();
+            var user = GetUser(userId);
+            return user.Students.ToList();
         }
 
-        public async Task<List<Student>> GetStudentsByName(string name)
+        public List<Student> GetStudentsByName(string name)
         {
-            return await context.Students.Where(x => x.Lastname == name).ToListAsync();
+            return context.Students.Where(x => x.Lastname == name).ToList();
         }
 
-        public Student AddStudent(Student student, string userId)
+        public Student AddStudent(Guid userId, Student student)
         {
             var user = GetUser(userId);
 
@@ -43,10 +44,11 @@ namespace Academ.io.Data.Repositories
             return student;
         }
 
-        public Student DeleteStudent(Student student, string userId)
+        public Student DeleteStudent(Guid userId, string studentId)
         {
             var user = GetUser(userId);
-            var studentAttach = user.Students.SingleOrDefault(x => x.StudentIdentity == student.StudentIdentity);
+            var studentGuid = new Guid(studentId);
+            var studentAttach = user.Students.SingleOrDefault(x => x.StudentIdentity == studentGuid);
             if(studentAttach != null)
             {
                 user.Students.Remove(studentAttach);
@@ -55,15 +57,8 @@ namespace Academ.io.Data.Repositories
             return studentAttach;
         }
 
-        public async Task<List<Student>> GetStudentsByUserId(string userId)
+        private AcademUser GetUser(Guid userId)
         {
-            var user = GetUser(userId);
-            return user.Students.ToList();
-        }
-
-        private AcademUser GetUser(string id)
-        {
-            var userId = new Guid(id);
             return context.Users.Include(x => x.Students).SingleOrDefault(x => x.UserId == userId) ?? context.Users.Add(new AcademUser
             {
                 UserId = userId

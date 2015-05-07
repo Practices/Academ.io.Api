@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace Academ.io.Api.Models.Dto
 {
-    public class StudentDto
+    public class StudentViewModel
     {
         public int StudentId { get; set; }
         public Guid StudentIdentity { get; set; }

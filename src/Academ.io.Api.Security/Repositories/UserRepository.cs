@@ -42,7 +42,12 @@ namespace Academ.io.Api.Security.Repositories
         public async Task<List<ApplicationUser>> GetUsers()
         {
             return await this.userManager.Users.ToListAsync();
-        } 
+        }
+
+        public ApplicationUser GetUser(string username)
+        {
+            return userManager.FindByName(username);
+        }
 
         public void Dispose()
         {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Academ.io.Models;
@@ -6,9 +7,9 @@ namespace Academ.io.Data.Repositories
 {
     public interface IStudentRepository
     {
-        Task<List<Student>> GetStudentsByUserId();
-        Task<List<Student>> GetStudentsByName(string name);
-        Student AddStudent(Student student, string userId);
-        Student DeleteStudent(Student student, string userId);
+        List<Student> GetStudentsByUserId(Guid userId);
+        List<Student> GetStudentsByName(string name);
+        Student AddStudent(Guid userId, Student student);
+        Student DeleteStudent(Guid userId, string student);
     }
 }

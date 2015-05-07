@@ -7,6 +7,7 @@ using Academ.io.Data.Contexts;
 using Academ.io.Data.Repositories;
 using Academ.io.Services;
 using Academ.io.Services.Students;
+using Academ.io.University.Api.Services.Contingents;
 using Academ.io.University.Api.Services.Sessions;
 using Autofac;
 using Autofac.Integration.WebApi;
@@ -46,6 +47,8 @@ namespace Academ.io.Api
             builder.RegisterType<SessionService>().As<ISessionService>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<SessionServiceApi>().As<ISessionServiceApi>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<MarkRepository>().As<IMarkRepository>().AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterType<StudentServiceApi>().As<IStudentServiceApi>().AsImplementedInterfaces().InstancePerRequest();
+
         }
     }
 }
