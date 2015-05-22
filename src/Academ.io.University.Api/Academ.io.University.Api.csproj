@@ -29,6 +29,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper">
       <HintPath>..\..\lib\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
@@ -49,6 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\GuidTypeConverter .cs" />
+    <Compile Include="Fakes\GenerateData.cs" />
+    <Compile Include="Fakes\SessionServiceApiFake.cs" />
+    <Compile Include="Fakes\StudentServiceApiFake.cs" />
     <Compile Include="Models\ContingentModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\DisciplineModel.cs" />

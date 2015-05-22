@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using Academ.io.Models;
+using Academ.io.University.Api.Models;
 
 namespace Academ.io.University.Api.Services.Contingents
 {
     public interface IStudentServiceApi
     {
-        IEnumerable<Student> GetStudentsByContainer(string value);
-        IEnumerable<Student> GetStudentById(string value);
-        IEnumerable<Student> GetStudentByFamily(string value);
-        IEnumerable<Student> GetStudentByCardnumber(string value);
+        IEnumerable<StudentModel> GetStudentsByContainer(string value);
+        IEnumerable<StudentModel> GetStudentById(string value);
+        IEnumerable<StudentModel> GetStudentByFamily(string value);
+        IEnumerable<StudentModel> GetStudentByCardnumber(string value);
     }
 }
