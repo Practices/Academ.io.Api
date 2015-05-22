@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Threading.Tasks;
 using Academ.io.Data.Contexts;
 using Academ.io.Models;
 
@@ -11,9 +10,9 @@ namespace Academ.io.Data.Repositories
 {
     public class StudentRepository: IStudentRepository
     {
-        private readonly StudentContext context;
+        private readonly AcademContext context;
 
-        public StudentRepository(StudentContext context)
+        public StudentRepository(AcademContext context)
         {
             this.context = context;
         }
@@ -37,7 +36,7 @@ namespace Academ.io.Data.Repositories
             {
                 var studentAttach = context.Students.SingleOrDefault(x => x.StudentIdentity == student.StudentIdentity) ?? context.Students.Add(student);
                 user.Students.Add(studentAttach);
-                context.Users.AddOrUpdate(user);
+                context.AcademUsers.AddOrUpdate(user);
                 context.SaveChanges();
                 return studentAttach;
             }
@@ -57,9 +56,22 @@ namespace Academ.io.Data.Repositories
             return studentAttach;
         }
 
+        public Student GetStudentsById(Guid userId, int studentId)
+        {
+            var student = context.Students.Include(t => t.Users).SingleOrDefault(x => x.StudentId == studentId);
+            if(student != null)
+            {
+                if(student.Users.FirstOrDefault(x => x.UserId == userId) != null)
+                {
+                    return student;
+                }
+            }
+            return null;
+        }
+
         private AcademUser GetUser(Guid userId)
         {
-            return context.Users.Include(x => x.Students).SingleOrDefault(x => x.UserId == userId) ?? context.Users.Add(new AcademUser
+            return context.AcademUsers.Include(x => x.Students).SingleOrDefault(x => x.UserId == userId) ?? context.AcademUsers.Add(new AcademUser
             {
                 UserId = userId
             });

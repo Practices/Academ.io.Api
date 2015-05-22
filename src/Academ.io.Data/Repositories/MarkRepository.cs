@@ -8,9 +8,9 @@ namespace Academ.io.Data.Repositories
 {
     public class MarkRepository: IMarkRepository
     {
-        private readonly SessionContext sessionContext;
+        private readonly AcademContext sessionContext;
 
-        public MarkRepository(SessionContext sessionContext)
+        public MarkRepository(AcademContext sessionContext)
         {
             this.sessionContext = sessionContext;
         }

@@ -6,8 +6,8 @@ namespace Academ.io.Data.Contexts
     public class SessionContext: DbContext
     {
         public SessionContext()
+                : base("AcademContext")
         {
-            
         }
 
         public DbSet<Mark> Marks { get; set; }

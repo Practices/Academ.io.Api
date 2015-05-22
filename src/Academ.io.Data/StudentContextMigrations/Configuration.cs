@@ -60,7 +60,7 @@ namespace Academ.io.Data.StudentContextMigrations
 
                 user.Students.Add(students[0]);
 
-                context.Users.Add(user);
+                context.AcademUsers.Add(user);
 
                 context.SaveChanges();
             }

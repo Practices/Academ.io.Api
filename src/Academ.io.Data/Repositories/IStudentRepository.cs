@@ -11,5 +11,6 @@ namespace Academ.io.Data.Repositories
         List<Student> GetStudentsByName(string name);
         Student AddStudent(Guid userId, Student student);
         Student DeleteStudent(Guid userId, string student);
+        Student GetStudentsById(Guid userId, int studentId);
     }
 }
