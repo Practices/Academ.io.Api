@@ -2,52 +2,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Academ.io.Api.Security.Repositories;
+using Academ.io.Api.Models.Dto;
 using Academ.io.Data.Repositories;
 using Academ.io.Models;
+using Academ.io.University.Api.Converters;
+using Academ.io.University.Api.Models;
 using Academ.io.University.Api.Services.Contingents;
+using AutoMapper;
 
 namespace Academ.io.Services.Students
 {
     public class StudentService: IStudentService
     {
         private IStudentRepository studentRepository;
-        private IUserRepository userRepository;
         private IStudentServiceApi studentServiceApi;
 
-        public StudentService(IStudentRepository studentRepository, IUserRepository userRepository, IStudentServiceApi studentServiceApi)
+        public StudentService(IStudentRepository studentRepository, IStudentServiceApi studentServiceApi)
         {
             this.studentRepository = studentRepository;
-            this.userRepository = userRepository;
             this.studentServiceApi = studentServiceApi;
+
+            Mapper.CreateMap<string, Guid>().ConvertUsing(new GuidTypeConverter());
+            Mapper.CreateMap<StudentModel, Student>();
         }
 
-        public List<Student> GetStudents(string userId)
+        public List<Student> GetStudents(Guid userId)
         {
-            return studentRepository.GetStudentsByUserId(new Guid(userId));
+            return studentRepository.GetStudentsByUserId(userId);
         }
 
         public List<Student> GetStudentsByName(string name)
         {
-            return studentServiceApi.GetStudentByFamily(name).ToList();
-        }
-
-        public Student AddStudent(string userId, string studentId)
-        {
-            var student = studentServiceApi.GetStudentById(studentId).FirstOrDefault();
-            var result = studentRepository.AddStudent(new Guid(userId), student);
-
+            var data = studentServiceApi.GetStudentByFamily(name);
+            var result = new List<Student>();
+            Mapper.Map(result, data);
             return result;
         }
 
-        public Student DeleteStudent(string userId, string studentId)
+        public Student AddStudent(Guid userId, Student student)
         {
-            return studentRepository.DeleteStudent(new Guid(userId), studentId);
+            return studentRepository.AddStudent(userId, student);
         }
 
-        public Student GetStudentByName(string name)
+        public Student DeleteStudent(Guid userId, string studentId)
         {
-            return null;
+            return studentRepository.DeleteStudent(userId, studentId);
+        }
+
+        public Student GetStudent(Guid userId, int studentId)
+        {
+            return studentRepository.GetStudentsById(userId, studentId);
         }
     }
 }

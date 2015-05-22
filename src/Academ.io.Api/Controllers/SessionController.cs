@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Web.Http;
 using Academ.io.Api.Models;
 using Academ.io.Models;
-using Academ.io.Services;
+using Academ.io.Services.Sessions;
 using AutoMapper;
 
 namespace Academ.io.Api.Controllers
 {
+    [RoutePrefix("api/session")]
     public class SessionController: ApiController
     {
         private readonly ISessionService sessionService;
@@ -16,17 +17,31 @@ namespace Academ.io.Api.Controllers
         {
             this.sessionService = sessionService;
 
-            Mapper.CreateMap<Discipline, DisciplineDto>().ForMember(o => o.TestTypeId, m => m.MapFrom(s => s.TestType.TestTypeId));
+            Mapper.CreateMap<Discipline, DisciplineViewModel>().ForMember(o => o.TestTypeId, m => m.MapFrom(s => s.TestType.TestTypeId));
         }
 
         [Authorize]
-        public IEnumerable<DisciplineDto> GetSession(string id)
+        public IHttpActionResult GetSession(string id)
         {
-            var disciplines = sessionService.GetSession(new Guid(id));
+            var guid = new Guid(id);
 
-            var disciplineViewModels = Mapper.Map<IEnumerable<Discipline>, IEnumerable<DisciplineDto>>(disciplines);
-            
-            return disciplineViewModels;
+            var disciplines = sessionService.GetSession(guid);
+
+            var disciplineViewModels = Mapper.Map<IEnumerable<Discipline>, IEnumerable<DisciplineViewModel>>(disciplines);
+
+            return Ok(disciplineViewModels);
+        }
+
+        [Authorize]
+        [Route("progress/{id}")]
+        public IHttpActionResult GetChartSession(int id)
+        {
+            var data = sessionService.GetProgress(id);
+            if(data == null)
+            {
+                return BadRequest("Not found student");
+            }
+            return Ok(data);
         }
     }
 }

@@ -5,8 +5,9 @@ using Academ.io.Api.Security.Contexts;
 using Academ.io.Api.Security.Repositories;
 using Academ.io.Data.Contexts;
 using Academ.io.Data.Repositories;
-using Academ.io.Services;
+using Academ.io.Services.Sessions;
 using Academ.io.Services.Students;
+using Academ.io.University.Api.Fakes;
 using Academ.io.University.Api.Services.Contingents;
 using Academ.io.University.Api.Services.Sessions;
 using Autofac;
@@ -39,15 +40,14 @@ namespace Academ.io.Api
         private static void RegisterComponents(ContainerBuilder builder)
         {
             builder.RegisterType<ApplicationContext>().SingleInstance();
-            builder.RegisterType<StudentContext>().SingleInstance();
-            builder.RegisterType<SessionContext>().SingleInstance();
+            builder.RegisterType<AcademContext>().SingleInstance();
             builder.RegisterType<UserRepository>().As<IUserRepository>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<StudentService>().As<IStudentService>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<StudentRepository>().As<IStudentRepository>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<SessionService>().As<ISessionService>().AsImplementedInterfaces().InstancePerRequest();
-            builder.RegisterType<SessionServiceApi>().As<ISessionServiceApi>().AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterType<SessionServiceApiFake>().As<ISessionServiceApi>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<MarkRepository>().As<IMarkRepository>().AsImplementedInterfaces().InstancePerRequest();
-            builder.RegisterType<StudentServiceApi>().As<IStudentServiceApi>().AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterType<StudentServiceApiFake>().As<IStudentServiceApi>().AsImplementedInterfaces().InstancePerRequest();
 
         }
     }

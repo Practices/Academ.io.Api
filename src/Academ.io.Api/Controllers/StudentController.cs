@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using Academ.io.Api.Models.Dto;
+using Academ.io.Models;
 using Academ.io.Services.Students;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
@@ -20,7 +22,7 @@ namespace Academ.io.Api.Controllers
         [Authorize]
         public IHttpActionResult Get()
         {
-            string userId = User.Identity.GetUserId();
+            var userId = GetUserId();
             var students = studentService.GetStudents(userId);
             IList<StudentViewModel> studentsViewModel = new List<StudentViewModel>();
             Mapper.Map(students, studentsViewModel);
@@ -28,6 +30,21 @@ namespace Academ.io.Api.Controllers
         }
 
         [Authorize]
+        [Route("{studentId}")]
+        public IHttpActionResult Get(int studentId)
+        {
+            var userId = GetUserId();
+            var student = studentService.GetStudent(userId, studentId);
+            if(student == null)
+            {
+                return BadRequest(message:"Ошибка, такой студент не существует.");
+            }
+            StudentViewModel studentViewModel = new StudentViewModel();
+            Mapper.Map(student, studentViewModel);
+            return Ok(studentViewModel);
+        }
+
+//        [Authorize]
         public IHttpActionResult GetStudentByName(string name)
         {
             var students = studentService.GetStudentsByName(name);
@@ -36,24 +53,30 @@ namespace Academ.io.Api.Controllers
             return Ok(studentsViewModel);
         }
 
-        [Authorize]
-        public IHttpActionResult Post(string id)
+//        [Authorize]
+        public IHttpActionResult Post(StudentViewModel studentViewModel)
         {
-            var userId = User.Identity.GetUserId();
-            var student = studentService.AddStudent(userId, id);
-            StudentViewModel studentViewModel = new StudentViewModel();
+            var userId = GetUserId();
+            var student = new Student();
+            Mapper.Map(studentViewModel, student);
+            student = studentService.AddStudent(userId, student);
             Mapper.Map(student, studentViewModel);
             return Ok(studentViewModel);
         }
 
-        [Authorize]
+//        [Authorize]
         public IHttpActionResult DeleteStudent(string id)
         {
-            var userId = User.Identity.GetUserId();
+            var userId = GetUserId();
             var student = studentService.DeleteStudent(userId, id);
-//            StudentViewModel studentViewModel = new StudentViewModel();
-//            Mapper.Map(student, studentViewModel);
+            //            StudentViewModel studentViewModel = new StudentViewModel();
+            //            Mapper.Map(student, studentViewModel);
             return Ok();
+        }
+
+        private Guid GetUserId()
+        {
+            return new Guid(User.Identity.GetUserId());
         }
     }
 }
