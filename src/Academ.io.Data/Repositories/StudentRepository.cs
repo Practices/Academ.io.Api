@@ -17,10 +17,10 @@ namespace Academ.io.Data.Repositories
             this.context = context;
         }
 
-        public List<Student> GetStudentsByUserId(Guid userId)
+        public List<Group> GetStudentsByUserId(Guid userId)
         {
             var user = GetUser(userId);
-            return user.Students.ToList();
+            return user.Groups.ToList();
         }
 
         public List<Student> GetStudentsByName(string name)
@@ -30,48 +30,50 @@ namespace Academ.io.Data.Repositories
 
         public Student AddStudent(Guid userId, Student student)
         {
-            var user = GetUser(userId);
-
-            if(user.Students.SingleOrDefault(x => x.StudentIdentity == student.StudentIdentity) == null)
-            {
-                var studentAttach = context.Students.SingleOrDefault(x => x.StudentIdentity == student.StudentIdentity) ?? context.Students.Add(student);
-                user.Students.Add(studentAttach);
-                context.AcademUsers.AddOrUpdate(user);
-                context.SaveChanges();
-                return studentAttach;
-            }
-            return student;
+//            var user = GetUser(userId);
+//
+//            if(user.Groups.SingleOrDefault(x => x.StudentIdentity == student.StudentIdentity) == null)
+//            {
+//                var studentAttach = context.Students.SingleOrDefault(x => x.StudentIdentity == student.StudentIdentity) ?? context.Students.Add(student);
+//                user.Groups.Add(studentAttach);
+//                context.AcademUsers.AddOrUpdate(user);
+//                context.SaveChanges();
+//                return studentAttach;
+//            }
+//            return student;
+            return null;
         }
 
         public Student DeleteStudent(Guid userId, string studentId)
         {
-            var user = GetUser(userId);
-            var studentGuid = new Guid(studentId);
-            var studentAttach = user.Students.SingleOrDefault(x => x.StudentIdentity == studentGuid);
-            if(studentAttach != null)
-            {
-                user.Students.Remove(studentAttach);
-                context.SaveChanges();
-            }
-            return studentAttach;
+//            var user = GetUser(userId);
+//            var studentGuid = new Guid(studentId);
+//            var studentAttach = user.Groups.SingleOrDefault(x => x.StudentIdentity == studentGuid);
+//            if(studentAttach != null)
+//            {
+//                user.Groups.Remove(studentAttach);
+//                context.SaveChanges();
+//            }
+//            return studentAttach;
+            return null;
         }
 
         public Student GetStudentsById(Guid userId, int studentId)
         {
-            var student = context.Students.Include(t => t.Users).SingleOrDefault(x => x.StudentId == studentId);
-            if(student != null)
-            {
-                if(student.Users.FirstOrDefault(x => x.UserId == userId) != null)
-                {
-                    return student;
-                }
-            }
+//            var student = context.Students.Include(t => t.Users).SingleOrDefault(x => x.StudentId == studentId);
+//            if(student != null)
+//            {
+//                if(student.Users.FirstOrDefault(x => x.UserId == userId) != null)
+//                {
+//                    return student;
+//                }
+//            }
             return null;
         }
 
         private AcademUser GetUser(Guid userId)
         {
-            return context.AcademUsers.Include(x => x.Students).SingleOrDefault(x => x.UserId == userId) ?? context.AcademUsers.Add(new AcademUser
+            return context.AcademUsers.Include(x => x.Groups.Select(c => c.Students)).SingleOrDefault(x => x.UserId == userId) ?? context.AcademUsers.Add(new AcademUser
             {
                 UserId = userId
             });

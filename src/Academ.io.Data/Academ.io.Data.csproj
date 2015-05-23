@@ -38,6 +38,15 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug.Data|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug.Data\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
       <HintPath>..\..\lib\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -55,9 +64,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AcademContextMigrations\201505212249429_Init.cs" />
-    <Compile Include="AcademContextMigrations\201505212249429_Init.Designer.cs">
-      <DependentUpon>201505212249429_Init.cs</DependentUpon>
+    <Compile Include="AcademContextMigrations\201505232205502_AddGroup.cs" />
+    <Compile Include="AcademContextMigrations\201505232205502_AddGroup.Designer.cs">
+      <DependentUpon>201505232205502_AddGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AcademContextMigrations\201505232220238_FixRelasipAcademUserToGroup.cs" />
+    <Compile Include="AcademContextMigrations\201505232220238_FixRelasipAcademUserToGroup.Designer.cs">
+      <DependentUpon>201505232220238_FixRelasipAcademUserToGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="AcademContextMigrations\Configuration.cs" />
     <Compile Include="Configurations\AcademUserConfiguration.cs" />
@@ -75,24 +88,6 @@
     <Compile Include="Repositories\IStudentRepository.cs" />
     <Compile Include="Repositories\MarkRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
-    <Compile Include="SessionContextMigrations\201504121557390_Init.cs" />
-    <Compile Include="SessionContextMigrations\201504121557390_Init.Designer.cs">
-      <DependentUpon>201504121557390_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SessionContextMigrations\201504181935229_RefactoringMarkAndTestType.cs" />
-    <Compile Include="SessionContextMigrations\201504181935229_RefactoringMarkAndTestType.Designer.cs">
-      <DependentUpon>201504181935229_RefactoringMarkAndTestType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SessionContextMigrations\Configuration.cs" />
-    <Compile Include="StudentContextMigrations\201504290008543_Init.cs" />
-    <Compile Include="StudentContextMigrations\201504290008543_Init.Designer.cs">
-      <DependentUpon>201504290008543_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StudentContextMigrations\201504291155448_AddStudentGuid.cs" />
-    <Compile Include="StudentContextMigrations\201504291155448_AddStudentGuid.Designer.cs">
-      <DependentUpon>201504291155448_AddStudentGuid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StudentContextMigrations\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -104,22 +99,12 @@
       <Name>Academ.io.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="AcademContextMigrations\201505212249429_Init.resx">
-      <DependentUpon>201505212249429_Init.cs</DependentUpon>
+    <EmbeddedResource Include="AcademContextMigrations\201505232205502_AddGroup.resx">
+      <DependentUpon>201505232205502_AddGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SessionContextMigrations\201504121557390_Init.resx">
-      <DependentUpon>201504121557390_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SessionContextMigrations\201504181935229_RefactoringMarkAndTestType.resx">
-      <DependentUpon>201504181935229_RefactoringMarkAndTestType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StudentContextMigrations\201504290008543_Init.resx">
-      <DependentUpon>201504290008543_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StudentContextMigrations\201504291155448_AddStudentGuid.resx">
-      <DependentUpon>201504291155448_AddStudentGuid.cs</DependentUpon>
+    <EmbeddedResource Include="AcademContextMigrations\201505232220238_FixRelasipAcademUserToGroup.resx">
+      <DependentUpon>201505232220238_FixRelasipAcademUserToGroup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

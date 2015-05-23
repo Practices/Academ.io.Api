@@ -1,7 +1,13 @@
-﻿namespace Academ.io.Data.Configurations
+﻿using System.Data.Entity.ModelConfiguration;
+using Academ.io.Models;
+
+namespace Academ.io.Data.Configurations
 {
-    public class AcademUserConfiguration
+    public class AcademUserConfiguration:EntityTypeConfiguration<AcademUser>
     {
-         
+        public AcademUserConfiguration()
+        {
+            HasMany(t => t.Groups);
+        }
     }
 }

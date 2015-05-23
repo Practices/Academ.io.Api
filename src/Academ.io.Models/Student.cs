@@ -9,7 +9,6 @@ namespace Academ.io.Models
     public class Student
     {
         public int StudentId { get; set; }
-        private Collection<AcademUser> users;
         public Guid StudentIdentity { get; set; }
         public string Firstname { get; set; }
         public string Middlename { get; set; }
@@ -17,11 +16,5 @@ namespace Academ.io.Models
         public string Cardnumber { get; set; }
         public DateTime Birthdate { get; set; }
         public Group Group { get; set; }
-
-        public Collection<AcademUser> Users
-        {
-            get { return users ?? (users = new Collection<AcademUser>()); }
-            set { users = value; }
-        }
     }
 }

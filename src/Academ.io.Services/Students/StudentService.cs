@@ -28,7 +28,8 @@ namespace Academ.io.Services.Students
 
         public List<Student> GetStudents(Guid userId)
         {
-            return studentRepository.GetStudentsByUserId(userId);
+//            return studentRepository.GetStudentsByUserId(userId);
+            return null;
         }
 
         public List<Student> GetStudentsByName(string name)

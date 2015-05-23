@@ -7,13 +7,13 @@ namespace Academ.io.Data.AcademContextMigrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Init : IMigrationMetadata
+    public sealed partial class AddGroup : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddGroup));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505212249429_Init"; }
+            get { return "201505232205502_AddGroup"; }
         }
         
         string IMigrationMetadata.Source

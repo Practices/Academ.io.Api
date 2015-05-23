@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using Academ.io.Models;
@@ -15,6 +16,20 @@ namespace Academ.io.Data.AcademContextMigrations
         }
 
         protected override void Seed(Contexts.AcademContext context)
+        {
+            var testTypes = PopulateTestTypes(context);
+
+            PopulateMarks(context,testTypes);
+
+            var groups = PopulateGroups(context);
+
+            
+            PopulateStudents(context,groups);
+            
+            PopulateAcademUsers(context);
+        }
+
+        private List<TestType> PopulateTestTypes(Contexts.AcademContext context)
         {
             #region TestType
 
@@ -70,9 +85,14 @@ namespace Academ.io.Data.AcademContextMigrations
             context.TestTypes.AddRange(testtypes);
             context.SaveChanges();
 
+            return testtypes;
+        }
+
+        private  void PopulateMarks(Contexts.AcademContext context, List<TestType> testTypes)
+        {
             #region Mark
 
-            foreach(TestType testtype in testtypes)
+            foreach (TestType testtype in testTypes)
             {
                 context.TestTypes.Attach(testtype);
             }
@@ -84,350 +104,350 @@ namespace Academ.io.Data.AcademContextMigrations
                     Name = "Отлично",
                     ShortName = "Отл",
                     Grade = 5,
-                    TestType = testtypes[0]
+                    TestType = testTypes[0]
                 },
                 new Mark
                 {
                     Name = "Отлично",
                     ShortName = "Отл",
                     Grade = 5,
-                    TestType = testtypes[2]
+                    TestType = testTypes[2]
                 },
                 new Mark
                 {
                     Name = "Отлично",
                     ShortName = "Отл",
                     Grade = 5,
-                    TestType = testtypes[3]
+                    TestType = testTypes[3]
                 },
                 new Mark
                 {
                     Name = "Отлично",
                     ShortName = "Отл",
                     Grade = 5,
-                    TestType = testtypes[5]
+                    TestType = testTypes[5]
                 },
                 new Mark
                 {
                     Name = "Хорошо",
                     ShortName = "Хор",
                     Grade = 4,
-                    TestType = testtypes[0]
+                    TestType = testTypes[0]
                 },
                 new Mark
                 {
                     Name = "Хорошо",
                     ShortName = "Хор",
                     Grade = 4,
-                    TestType = testtypes[2]
+                    TestType = testTypes[2]
                 },
                 new Mark
                 {
                     Name = "Хорошо",
                     ShortName = "Хор",
                     Grade = 4,
-                    TestType = testtypes[3]
+                    TestType = testTypes[3]
                 },
                 new Mark
                 {
                     Name = "Хорошо",
                     ShortName = "Хор",
                     Grade = 4,
-                    TestType = testtypes[5]
+                    TestType = testTypes[5]
                 },
                 new Mark
                 {
                     Name = "Удовлетворительно",
                     ShortName = "Удов",
                     Grade = 3,
-                    TestType = testtypes[2]
+                    TestType = testTypes[2]
                 },
                 new Mark
                 {
                     Name = "Удовлетворительно",
                     ShortName = "Удов",
                     Grade = 3,
-                    TestType = testtypes[3]
+                    TestType = testTypes[3]
                 },
                 new Mark
                 {
                     Name = "Удовлетворительно",
                     ShortName = "Удов",
                     Grade = 3,
-                    TestType = testtypes[0]
+                    TestType = testTypes[0]
                 },
                 new Mark
                 {
                     Name = "Удовлетворительно",
                     ShortName = "Удов",
                     Grade = 3,
-                    TestType = testtypes[5]
+                    TestType = testTypes[5]
                 },
                 new Mark
                 {
                     Name = "Зачтено",
                     ShortName = "Зчт",
                     Grade = 3,
-                    TestType = testtypes[4]
+                    TestType = testTypes[4]
                 },
                 new Mark
                 {
                     Name = "Зачтено",
                     ShortName = "Зчт",
                     Grade = 3,
-                    TestType = testtypes[1]
+                    TestType = testTypes[1]
                 },
                 new Mark
                 {
                     Name = "Зачтено",
                     ShortName = "Зчт",
                     Grade = 3,
-                    TestType = testtypes[6]
+                    TestType = testTypes[6]
                 },
                 new Mark
                 {
                     Name = "Неудовлетворительно",
                     ShortName = "Неуд",
                     Grade = 2,
-                    TestType = testtypes[2]
+                    TestType = testTypes[2]
                 },
                 new Mark
                 {
                     Name = "Неудовлетворительно",
                     ShortName = "Неуд",
                     Grade = 2,
-                    TestType = testtypes[3]
+                    TestType = testTypes[3]
                 },
                 new Mark
                 {
                     Name = "Неудовлетворительно",
                     ShortName = "Неуд",
                     Grade = 2,
-                    TestType = testtypes[0]
+                    TestType = testTypes[0]
                 },
                 new Mark
                 {
                     Name = "Неудовлетворительно",
                     ShortName = "Неуд",
                     Grade = 2,
-                    TestType = testtypes[5]
+                    TestType = testTypes[5]
                 },
                 new Mark
                 {
                     Name = "Не зачтено",
                     ShortName = "Нзч",
                     Grade = 2,
-                    TestType = testtypes[4]
+                    TestType = testTypes[4]
                 },
                 new Mark
                 {
                     Name = "Не зачтено",
                     ShortName = "Нзч",
                     Grade = 2,
-                    TestType = testtypes[1]
+                    TestType = testTypes[1]
                 },
                 new Mark
                 {
                     Name = "Не зачтено",
                     ShortName = "Нзч",
                     Grade = 2,
-                    TestType = testtypes[6]
+                    TestType = testTypes[6]
                 },
                 new Mark
                 {
                     Name = "Неявка",
                     ShortName = "Я",
                     Grade = 1,
-                    TestType = testtypes[0]
+                    TestType = testTypes[0]
                 },
                 new Mark
                 {
                     Name = "Неявка",
                     ShortName = "Я",
                     Grade = 1,
-                    TestType = testtypes[1]
+                    TestType = testTypes[1]
                 },
                 new Mark
                 {
                     Name = "Неявка",
                     ShortName = "Я",
                     Grade = 1,
-                    TestType = testtypes[2]
+                    TestType = testTypes[2]
                 },
                 new Mark
                 {
                     Name = "Неявка",
                     ShortName = "Я",
                     Grade = 1,
-                    TestType = testtypes[3]
+                    TestType = testTypes[3]
                 },
                 new Mark
                 {
                     Name = "Неявка",
                     ShortName = "Я",
                     Grade = 1,
-                    TestType = testtypes[4]
+                    TestType = testTypes[4]
                 },
                 new Mark
                 {
                     Name = "Неявка",
                     ShortName = "Я",
                     Grade = 1,
-                    TestType = testtypes[5]
+                    TestType = testTypes[5]
                 },
                 new Mark
                 {
                     Name = "Неявка",
                     ShortName = "Я",
                     Grade = 1,
-                    TestType = testtypes[6]
+                    TestType = testTypes[6]
                 },
                 new Mark
                 {
                     Name = "Недопуск деканата",
                     ShortName = "Д",
                     Grade = 0,
-                    TestType = testtypes[0]
+                    TestType = testTypes[0]
                 },
                 new Mark
                 {
                     Name = "Недопуск деканата",
                     ShortName = "Д",
                     Grade = 0,
-                    TestType = testtypes[1]
+                    TestType = testTypes[1]
                 },
                 new Mark
                 {
                     Name = "Недопуск деканата",
                     ShortName = "Д",
                     Grade = 0,
-                    TestType = testtypes[2]
+                    TestType = testTypes[2]
                 },
                 new Mark
                 {
                     Name = "Недопуск деканата",
                     ShortName = "Д",
                     Grade = 0,
-                    TestType = testtypes[3]
+                    TestType = testTypes[3]
                 },
                 new Mark
                 {
                     Name = "Недопуск деканата",
                     ShortName = "Д",
                     Grade = 0,
-                    TestType = testtypes[4]
+                    TestType = testTypes[4]
                 },
                 new Mark
                 {
                     Name = "Недопуск деканата",
                     ShortName = "Д",
                     Grade = 0,
-                    TestType = testtypes[5]
+                    TestType = testTypes[5]
                 },
                 new Mark
                 {
                     Name = "Недопуск деканата",
                     ShortName = "Д",
                     Grade = 0,
-                    TestType = testtypes[6]
+                    TestType = testTypes[6]
                 },
                 new Mark
                 {
                     Name = "Недопуск кафедры",
                     ShortName = "Дк",
                     Grade = -2,
-                    TestType = testtypes[0]
+                    TestType = testTypes[0]
                 },
                 new Mark
                 {
                     Name = "Недопуск кафедры",
                     ShortName = "Дк",
                     Grade = -2,
-                    TestType = testtypes[1]
+                    TestType = testTypes[1]
                 },
                 new Mark
                 {
                     Name = "Недопуск кафедры",
                     ShortName = "Дк",
                     Grade = -2,
-                    TestType = testtypes[2]
+                    TestType = testTypes[2]
                 },
                 new Mark
                 {
                     Name = "Недопуск кафедры",
                     ShortName = "Дк",
                     Grade = -2,
-                    TestType = testtypes[3]
+                    TestType = testTypes[3]
                 },
                 new Mark
                 {
                     Name = "Недопуск кафедры",
                     ShortName = "Дк",
                     Grade = -2,
-                    TestType = testtypes[4]
+                    TestType = testTypes[4]
                 },
                 new Mark
                 {
                     Name = "Недопуск кафедры",
                     ShortName = "Дк",
                     Grade = -2,
-                    TestType = testtypes[5]
+                    TestType = testTypes[5]
                 },
                 new Mark
                 {
                     Name = "Недопуск кафедры",
                     ShortName = "Дк",
                     Grade = -2,
-                    TestType = testtypes[6]
+                    TestType = testTypes[6]
                 },
                 new Mark
                 {
                     Name = "Перенос",
                     ShortName = "П",
                     Grade = -3,
-                    TestType = testtypes[0]
+                    TestType = testTypes[0]
                 },
                 new Mark
                 {
                     Name = "Перенос",
                     ShortName = "П",
                     Grade = -3,
-                    TestType = testtypes[1]
+                    TestType = testTypes[1]
                 },
                 new Mark
                 {
                     Name = "Перенос",
                     ShortName = "П",
                     Grade = -3,
-                    TestType = testtypes[2]
+                    TestType = testTypes[2]
                 },
                 new Mark
                 {
                     Name = "Перенос",
                     ShortName = "П",
                     Grade = -3,
-                    TestType = testtypes[3]
+                    TestType = testTypes[3]
                 },
                 new Mark
                 {
                     Name = "Перенос",
                     ShortName = "П",
                     Grade = -3,
-                    TestType = testtypes[4]
+                    TestType = testTypes[4]
                 },
                 new Mark
                 {
                     Name = "Перенос",
                     ShortName = "П",
                     Grade = -3,
-                    TestType = testtypes[5]
+                    TestType = testTypes[5]
                 },
                 new Mark
                 {
                     Name = "Перенос",
                     ShortName = "П",
                     Grade = -3,
-                    TestType = testtypes[6]
+                    TestType = testTypes[6]
                 }
             };
 
@@ -436,7 +456,27 @@ namespace Academ.io.Data.AcademContextMigrations
 
             context.Marks.AddRange(marks);
             context.SaveChanges();
+        }
 
+        private List<Group> PopulateGroups(Contexts.AcademContext context)
+        {
+            List<Group> groups = new List<Group>
+            {
+                new Group
+                {
+                    GroupGuid = new Guid("47408eda-51d3-11e3-b65b-005056960017"),
+                    Name = "ИУ5-123Ц"
+                }
+            };
+
+            context.Groups.AddRange(groups);
+            context.SaveChanges();
+
+            return groups;
+        }
+
+        private void PopulateStudents(Contexts.AcademContext context,List<Group> groups)
+        {
             List<Student> students = new List<Student>
             {
                 new Student
@@ -447,7 +487,7 @@ namespace Academ.io.Data.AcademContextMigrations
                     Lastname = "Тестов",
                     Birthdate = new DateTime(1992, 2, 22),
                     Cardnumber = "09Ц002",
-                    Group = "ИУ5-122"
+                    Group = groups[0]
                 },
                 new Student
                 {
@@ -457,21 +497,26 @@ namespace Academ.io.Data.AcademContextMigrations
                     Lastname = "Суров",
                     Birthdate = new DateTime(1991, 1, 11),
                     Cardnumber = "09Ц001",
-                    Group = "ИУ5-121"
+                    Group = groups[0]
                 }
-            };
-
-            var user = new AcademUser
-            {
-                UserId = new Guid("8483d47b-38eb-4a03-bccc-56ea5be5e70b")
             };
 
             context.Students.AddRange(students);
             context.SaveChanges();
+        }
 
-            students = context.Students.ToList();
+        private void PopulateAcademUsers(Contexts.AcademContext context)
+        {
+            var user = new AcademUser
+            {
+                UserId = new Guid("8483d47b-38eb-4a03-bccc-56ea5be5e70b"),
+                Groups = new Collection<Group>()
+                
+            };
 
-            user.Students.Add(students[0]);
+            var group = context.Groups.ToList();
+
+            user.Groups.Add(group[0]);
 
             context.AcademUsers.Add(user);
 

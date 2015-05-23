@@ -23,6 +23,8 @@ namespace Academ.io.Data.Contexts
         {
             modelBuilder.Configurations.Add(new StudentConfiguration());
             modelBuilder.Configurations.Add(new GroupConfiguration());
+            modelBuilder.Configurations.Add(new AcademUserConfiguration());
+
 //            base.OnModelCreating(modelBuilder);
         }
     }

@@ -7,7 +7,7 @@ namespace Academ.io.Data.Repositories
 {
     public interface IStudentRepository
     {
-        List<Student> GetStudentsByUserId(Guid userId);
+        List<Group> GetStudentsByUserId(Guid userId);
         List<Student> GetStudentsByName(string name);
         Student AddStudent(Guid userId, Student student);
         Student DeleteStudent(Guid userId, string student);
