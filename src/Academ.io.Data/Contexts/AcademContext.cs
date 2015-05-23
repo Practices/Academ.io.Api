@@ -10,6 +10,7 @@ namespace Academ.io.Data.Contexts
         {
         }
 
+        public DbSet<Group> Groups { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<AcademUser> AcademUsers { get; set; }
         public DbSet<Mark> Marks { get; set; }

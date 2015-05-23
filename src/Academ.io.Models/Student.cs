@@ -17,8 +17,7 @@ namespace Academ.io.Models
         public string Lastname { get; set; }
         public string Cardnumber { get; set; }
         public DateTime Birthdate { get; set; }
-        public Guid GroupId { get; set; }
-        public string Group { get; set; }
+        public Group Group { get; set; }
 
         public Collection<AcademUser> Users
         {
