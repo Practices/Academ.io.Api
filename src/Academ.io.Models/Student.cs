@@ -8,7 +8,6 @@ namespace Academ.io.Models
 {
     public class Student
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StudentId { get; set; }
         private Collection<AcademUser> users;
         public Guid StudentIdentity { get; set; }

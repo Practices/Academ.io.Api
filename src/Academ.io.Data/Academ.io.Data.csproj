@@ -60,6 +60,13 @@
       <DependentUpon>201505212249429_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="AcademContextMigrations\Configuration.cs" />
+    <Compile Include="Configurations\AcademUserConfiguration.cs" />
+    <Compile Include="Configurations\ConfigurationPasstype.cs" />
+    <Compile Include="Configurations\GroupConfiguration.cs" />
+    <Compile Include="Configurations\MarkConfiguration.cs" />
+    <Compile Include="Configurations\SessionConfiguration.cs" />
+    <Compile Include="Configurations\SessionPointConfiguration.cs" />
+    <Compile Include="Configurations\StudentConfiguration.cs" />
     <Compile Include="Contexts\AcademContext.cs" />
     <Compile Include="Contexts\SessionContext.cs" />
     <Compile Include="Contexts\StudentContext.cs" />
