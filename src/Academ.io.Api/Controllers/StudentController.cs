@@ -37,14 +37,14 @@ namespace Academ.io.Api.Controllers
             var student = studentService.GetStudent(userId, studentId);
             if(student == null)
             {
-                return BadRequest(message:"Ошибка, такой студент не существует.");
+                return BadRequest("Ошибка, такой студент не существует.");
             }
             StudentViewModel studentViewModel = new StudentViewModel();
             Mapper.Map(student, studentViewModel);
             return Ok(studentViewModel);
         }
 
-//        [Authorize]
+        [Authorize]
         public IHttpActionResult GetStudentByName(string name)
         {
             var students = studentService.GetStudentsByName(name);
@@ -53,7 +53,7 @@ namespace Academ.io.Api.Controllers
             return Ok(studentsViewModel);
         }
 
-//        [Authorize]
+        [Authorize]
         public IHttpActionResult Post(StudentViewModel studentViewModel)
         {
             var userId = GetUserId();
@@ -64,7 +64,7 @@ namespace Academ.io.Api.Controllers
             return Ok(studentViewModel);
         }
 
-//        [Authorize]
+        [Authorize]
         public IHttpActionResult DeleteStudent(string id)
         {
             var userId = GetUserId();
