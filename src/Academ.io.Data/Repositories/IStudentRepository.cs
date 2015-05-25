@@ -12,5 +12,6 @@ namespace Academ.io.Data.Repositories
         Group RemoveGroup(Guid userId, int groupId);
         Student GetStudentsById(Guid userId, int studentId);
         void AddStudents(List<Student> students, Group group);
+        Student GetStudentsById(int studentId);
     }
 }

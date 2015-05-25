@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Academ.io.Data.Contexts;
 using Academ.io.Models;
 
@@ -65,6 +66,11 @@ namespace Academ.io.Data.Repositories
 
             context.Students.AddRange(students);
             context.SaveChanges();
+        }
+
+        public Student GetStudentsById(int studentId)
+        {
+            return context.Students.Find(studentId);
         }
 
         private AcademUser GetUser(Guid userId)

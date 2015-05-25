@@ -22,9 +22,7 @@ namespace Academ.io.Services.Sessions
             this.markRepository = markRepository;
             this.studentRepository = studentRepository;
 
-            Mapper.CreateMap<DisciplineModel, Discipline>().ForMember(dest => dest.Mark, opt => opt.Ignore());
-            Mapper.CreateMap<DisciplineModel, Discipline>().ForMember(dest => dest.TestType, opt => opt.Ignore());
-            Mapper.AssertConfigurationIsValid();
+            Mapper.CreateMap<DisciplineModel, Discipline>().ForMember(dest => dest.Mark, opt => opt.Ignore()).ForMember(dest => dest.TestType, opt => opt.Ignore());
         }
 
         public IEnumerable<Discipline> GetSession(Guid studentId)
@@ -38,15 +36,14 @@ namespace Academ.io.Services.Sessions
 
         public List<ChartProgressViewModel> GetProgress(int studentId)
         {
-//            var student = studentRepository.GetStudentsById(TODO, studentId);
-//            if(student == null)
-//            {
-//                return null;
-//            }
-//            List<Discipline> disciplines = GetSession(student.StudentIdentity).ToList();
-//            var data = CalcProgress(disciplines);
-//            return data;
-            return null;
+            var student = studentRepository.GetStudentsById(studentId);
+            if(student == null)
+            {
+                return null;
+            }
+            List<Discipline> disciplines = GetSession(student.StudentIdentity).ToList();
+            var data = CalcProgress(disciplines);
+            return data;
         }
 
         private List<Discipline> FillItems(List<DisciplineModel> disciplines)

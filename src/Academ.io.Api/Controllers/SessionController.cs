@@ -33,8 +33,8 @@ namespace Academ.io.Api.Controllers
         }
 
         [Authorize]
-        [Route("progress/{id}")]
-        public IHttpActionResult GetChartSession(int id)
+        [Route("{id}/progress")]
+        public IHttpActionResult GetSessionProgress(int id)
         {
             var data = sessionService.GetProgress(id);
             if(data == null)
