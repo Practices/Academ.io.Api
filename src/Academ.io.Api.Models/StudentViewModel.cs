@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 
-namespace Academ.io.Api.Models.Dto
+namespace Academ.io.Api.Models
 {
     public class StudentViewModel
     {
@@ -12,7 +11,6 @@ namespace Academ.io.Api.Models.Dto
         public string Lastname { get; set; }
         public string Cardnumber { get; set; }
         public DateTime Birthdate { get; set; }
-        public Guid GroupId { get; set; }
-        public string Group { get; set; }
+        public string GroupName { get; set; }
     }
 }

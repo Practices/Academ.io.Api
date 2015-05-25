@@ -7,10 +7,10 @@ namespace Academ.io.Data.Repositories
 {
     public interface IStudentRepository
     {
-        List<Group> GetStudentsByUserId(Guid userId);
-        List<Student> GetStudentsByName(string name);
-        Student AddStudent(Guid userId, Student student);
-        Student DeleteStudent(Guid userId, string student);
+        List<Group> GetGroupsByUserId(Guid userId);
+        Group AddGroup(Guid userId, Group group);
+        Group RemoveGroup(Guid userId, int groupId);
         Student GetStudentsById(Guid userId, int studentId);
+        void AddStudents(List<Student> students, Group group);
     }
 }

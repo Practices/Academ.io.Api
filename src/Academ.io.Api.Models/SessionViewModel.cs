@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Academ.io.Api.Models.Dto
+namespace Academ.io.Api.Models
 {
     public class SessionViewModel
     {

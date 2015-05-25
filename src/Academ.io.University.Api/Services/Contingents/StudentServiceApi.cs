@@ -32,6 +32,11 @@ namespace Academ.io.University.Api.Services.Contingents
             return this.GetStudents("search[card_number]", value);
         }
 
+        public IEnumerable<GroupModel> GetGroupsByName(string value)
+        {
+            throw new NotImplementedException();
+        }
+
         private IEnumerable<StudentModel> GetStudents(string parameter, string value)
         {
             var request = GetRequest(StudentUrl);

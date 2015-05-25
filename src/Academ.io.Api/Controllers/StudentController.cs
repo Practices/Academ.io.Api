@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using Academ.io.Api.Models.Dto;
+using Academ.io.Api.Models;
 using Academ.io.Models;
 using Academ.io.Services.Students;
 using AutoMapper;
@@ -24,9 +24,9 @@ namespace Academ.io.Api.Controllers
         {
             var userId = GetUserId();
             var students = studentService.GetStudents(userId);
-            IList<StudentViewModel> studentsViewModel = new List<StudentViewModel>();
-            Mapper.Map(students, studentsViewModel);
-            return Ok(studentsViewModel);
+            IList<StudentViewModel> studentsViewModels = new List<StudentViewModel>();
+            Mapper.Map(students, studentsViewModels);
+            return Ok(studentsViewModels);
         }
 
         [Authorize]
@@ -45,34 +45,35 @@ namespace Academ.io.Api.Controllers
         }
 
         [Authorize]
-        public IHttpActionResult GetStudentByName(string name)
+        public IHttpActionResult GetGroupByName(string name)
         {
-            var students = studentService.GetStudentsByName(name);
-            IList<StudentViewModel> studentsViewModel = new List<StudentViewModel>();
-            Mapper.Map(students, studentsViewModel);
-            return Ok(studentsViewModel);
+            var groups = studentService.GetGroupsByName(name);
+            IList<GroupViewModel> groupViewModels = new List<GroupViewModel>();
+            Mapper.Map(groups, groupViewModels);
+            return Ok(groupViewModels);
         }
 
         [Authorize]
-        public IHttpActionResult Post(StudentViewModel studentViewModel)
+        public IHttpActionResult Post(GroupViewModel groupViewModel)
         {
             var userId = GetUserId();
-            var student = new Student();
-            Mapper.Map(studentViewModel, student);
-            student = studentService.AddStudent(userId, student);
-            Mapper.Map(student, studentViewModel);
-            return Ok(studentViewModel);
+            var group = new Group();
+            Mapper.Map(groupViewModel, group);
+            group = studentService.AddGroup(userId, group);
+            Mapper.Map(group, groupViewModel);
+            return Ok(groupViewModel);
         }
 
-        [Authorize]
-        public IHttpActionResult DeleteStudent(string id)
-        {
-            var userId = GetUserId();
-            var student = studentService.DeleteStudent(userId, id);
-            //            StudentViewModel studentViewModel = new StudentViewModel();
-            //            Mapper.Map(student, studentViewModel);
-            return Ok();
-        }
+        
+        //        [Authorize]
+        //        public IHttpActionResult DeleteStudent(string id)
+        //        {
+        //            var userId = GetUserId();
+        //            var student = studentService.DeleteStudent(userId, id);
+        //            //            StudentViewModel studentViewModel = new StudentViewModel();
+        //            //            Mapper.Map(student, studentViewModel);
+        //            return Ok();
+        //        }
 
         private Guid GetUserId()
         {

@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel;
+using System.Data.Entity;
+using System.Threading;
 using Academ.io.Data.Configurations;
 using Academ.io.Models;
 
@@ -9,6 +11,7 @@ namespace Academ.io.Data.Contexts
         public AcademContext()
                 : base("AcademContext")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<Group> Groups { get; set; }

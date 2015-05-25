@@ -6,7 +6,7 @@ namespace Academ.io.University.Api.Models
     public class StudentModel
     {
         [DeserializeAs(Name = "uuid")]
-        public string StudentId { get; set; }
+        public string StudentIdentity { get; set; }
 
         public string Firstname { get; set; }
         public string Lastname { get; set; }

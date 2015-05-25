@@ -17,34 +17,27 @@ namespace Academ.io.Data.Repositories
             this.context = context;
         }
 
-        public List<Group> GetStudentsByUserId(Guid userId)
+        public List<Group> GetGroupsByUserId(Guid userId)
         {
             var user = GetUser(userId);
             return user.Groups.ToList();
         }
 
-        public List<Student> GetStudentsByName(string name)
+        public Group AddGroup(Guid userId, Group group)
         {
-            return context.Students.Where(x => x.Lastname == name).ToList();
+            var user = GetUser(userId);
+            if (user.Groups.SingleOrDefault(x => x.GroupGuid == group.GroupGuid) == null)
+            {
+                var groupAttach = context.Groups.SingleOrDefault(x => x.GroupGuid == group.GroupGuid) ?? context.Groups.Add(group);
+                user.Groups.Add(groupAttach);
+                context.AcademUsers.AddOrUpdate(user);
+                context.SaveChanges();
+                return groupAttach;
+            }
+            return group;
         }
 
-        public Student AddStudent(Guid userId, Student student)
-        {
-//            var user = GetUser(userId);
-//
-//            if(user.Groups.SingleOrDefault(x => x.StudentIdentity == student.StudentIdentity) == null)
-//            {
-//                var studentAttach = context.Students.SingleOrDefault(x => x.StudentIdentity == student.StudentIdentity) ?? context.Students.Add(student);
-//                user.Groups.Add(studentAttach);
-//                context.AcademUsers.AddOrUpdate(user);
-//                context.SaveChanges();
-//                return studentAttach;
-//            }
-//            return student;
-            return null;
-        }
-
-        public Student DeleteStudent(Guid userId, string studentId)
+        public Group RemoveGroup(Guid userId, int studentId)
         {
 //            var user = GetUser(userId);
 //            var studentGuid = new Guid(studentId);
@@ -60,15 +53,18 @@ namespace Academ.io.Data.Repositories
 
         public Student GetStudentsById(Guid userId, int studentId)
         {
-//            var student = context.Students.Include(t => t.Users).SingleOrDefault(x => x.StudentId == studentId);
-//            if(student != null)
-//            {
-//                if(student.Users.FirstOrDefault(x => x.UserId == userId) != null)
-//                {
-//                    return student;
-//                }
-//            }
-            return null;
+            return context.Students.Include(t=>t.Group).SingleOrDefault(x=>x.StudentId == studentId);
+        }
+
+        public void AddStudents(List<Student> students, Group group)
+        {
+            foreach(Student student in students)
+            {
+                student.Group = group;
+            }
+
+            context.Students.AddRange(students);
+            context.SaveChanges();
         }
 
         private AcademUser GetUser(Guid userId)

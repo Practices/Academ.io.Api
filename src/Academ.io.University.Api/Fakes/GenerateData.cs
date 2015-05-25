@@ -13,46 +13,46 @@ namespace Academ.io.University.Api.Fakes
             {
                 new StudentModel
                 {
-                    StudentId = "89889959-faa8-4ad1-abab-b63be64d1b6a",
+                    StudentIdentity = "89889759-faa8-4ad1-abab-b63be64d1b6a",
                     Firstname = "Иван",
                     Middlename = "Иванович",
                     Lastname = "Иванов",
                     Birthdate = new DateTime(1995, 5, 25),
                     CardNumber = "15Ц001",
-                    GroupId = "89889959-faa8-4ad1-abab-b631e64d1b6a",
+                    GroupId = "e68642d2-4678-11e1-a486-003048dc3bec",
                     Group = "ИУ5-121"
                 },
                 new StudentModel
                 {
-                    StudentId = "89889919-faa8-4ad1-abab-b63be64d1b6a",
+                    StudentIdentity = "89885919-faa8-4ad1-abab-b63be64d1b6a",
                     Firstname = "Андрей",
                     Middlename = "Андреевич",
                     Lastname = "Андреев",
                     Birthdate = new DateTime(1996, 5, 25),
                     CardNumber = "15Ц002",
-                    GroupId = "89889959-faa8-4ad1-abab-b631e64d1b1a",
+                    GroupId = "e677e82d-4678-11e1-a486-003048dc3bec",
                     Group = "ИУ5-122"
                 },
                 new StudentModel
                 {
-                    StudentId = "89189959-faa8-4ad1-abab-563be64d1b6a",
+                    StudentIdentity = "89189259-faa8-4ad1-abab-563be64d1b6a",
                     Firstname = "Тест",
                     Middlename = "Тестович",
                     Lastname = "Тестов",
                     Birthdate = new DateTime(1992, 2, 22),
                     CardNumber = "09Ц002",
-                    GroupId = "89889959-faa8-4ad1-abab-b631e64d1b1a",
+                    GroupId = "e677e82d-4678-11e1-a486-003048dc3bec",
                     Group = "ИУ5-122",
                 },
                 new StudentModel
                 {
-                    StudentId = "be83d0ef-86c0-4e53-aaf4-88e1afb1521e",
+                    StudentIdentity = "be83d4ef-86c0-4e53-aaf4-88e1afb1521e",
                     Firstname = "Сур",
                     Middlename = "Сурович",
                     Lastname = "Суров",
                     Birthdate = new DateTime(1991, 1, 11),
                     CardNumber = "09Ц001",
-                    GroupId = "89889959-faa8-4ad1-a7ab-b631e64d1b6a",
+                    GroupId = "e677f4b3-4678-11e1-a486-003048dc3bec",
                     Group = "ИУ5-123"
                 }
             };
@@ -112,6 +112,36 @@ namespace Academ.io.University.Api.Fakes
             return data;
         } 
 
-
+        public static List<GroupModel> GetGroups()
+        {
+            return new List<GroupModel>()
+            {
+                new GroupModel()
+                {
+                    GroupGuid = "e68642d2-4678-11e1-a486-003048dc3bec",
+                    Name = "ИУ5-121"
+                },
+                new GroupModel()
+                {
+                    GroupGuid = "e677e82d-4678-11e1-a486-003048dc3bec",
+                    Name = "ИУ5-122"
+                },
+                new GroupModel()
+                {
+                    GroupGuid = "e677f4b3-4678-11e1-a486-003048dc3bec",
+                    Name = "ИУ5-123"
+                },
+                new GroupModel()
+                {
+                    GroupGuid = "e67801a3-4678-11e1-a486-003048dc3bec",
+                    Name = "ИУ5-124"
+                },
+                new GroupModel()
+                {
+                    GroupGuid = "47408eda-51d3-11e3-b65b-005056960017",
+                    Name = "ИУ5-123Ц"
+                }
+            };
+        } 
     }
 }

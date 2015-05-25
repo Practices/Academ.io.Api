@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Academ.io.Api.Models.Dto;
 using Academ.io.Data.Repositories;
 using Academ.io.Models;
 using Academ.io.University.Api.Converters;
@@ -23,36 +21,54 @@ namespace Academ.io.Services.Students
             this.studentServiceApi = studentServiceApi;
 
             Mapper.CreateMap<string, Guid>().ConvertUsing(new GuidTypeConverter());
-            Mapper.CreateMap<StudentModel, Student>();
+            Mapper.CreateMap<StudentModel, Student>().ForMember(d=>d.Group,o=>o.Ignore());
+            Mapper.CreateMap<GroupModel, Group>().ForMember(d => d.Students, o => o.Ignore()).ForMember(d => d.Users, o => o.Ignore());
         }
 
-        public List<Student> GetStudents(Guid userId)
+        public IEnumerable<Student> GetStudents(Guid userId)
         {
-//            return studentRepository.GetStudentsByUserId(userId);
-            return null;
-        }
-
-        public List<Student> GetStudentsByName(string name)
-        {
-            var data = studentServiceApi.GetStudentByFamily(name);
-            var result = new List<Student>();
-            Mapper.Map(result, data);
-            return result;
-        }
-
-        public Student AddStudent(Guid userId, Student student)
-        {
-            return studentRepository.AddStudent(userId, student);
-        }
-
-        public Student DeleteStudent(Guid userId, string studentId)
-        {
-            return studentRepository.DeleteStudent(userId, studentId);
+            var groups = studentRepository.GetGroupsByUserId(userId);
+            var students = new List<Student>();
+            foreach(Group item in groups)
+            {
+                students.AddRange(item.Students);
+            }
+            return students;
         }
 
         public Student GetStudent(Guid userId, int studentId)
         {
             return studentRepository.GetStudentsById(userId, studentId);
+        }
+
+        public List<Group> GetGroupsByName(string name)
+        {
+            var data = studentServiceApi.GetGroupsByName(name);
+            var result = new List<Group>();
+            Mapper.Map(data, result);
+            return result;
+        }
+
+        public Group AddGroup(Guid userId, Group group)
+        {
+            var groupAttach = studentRepository.AddGroup(userId, group);
+            if(groupAttach.GroupId > 0)
+            {
+                if(!groupAttach.Students.Any())
+                {
+                    var data = studentServiceApi.GetStudentsByContainer(groupAttach.GroupGuid.ToString());
+                    var result = new List<Student>();
+                    Mapper.Map(data, result);
+                    studentRepository.AddStudents(result, groupAttach);
+                }
+            }
+
+            return groupAttach;
+        }
+
+        public Group GroupRemove(Guid userId, int groupId)
+        {
+            return studentRepository.RemoveGroup(userId, groupId);
         }
     }
 }
