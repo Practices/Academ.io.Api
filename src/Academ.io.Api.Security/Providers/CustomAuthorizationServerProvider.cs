@@ -36,7 +36,7 @@ namespace Academ.io.Api.Security.Providers
 
                 var identity = await userManager.CreateIdentityAsync(user, context.Options.AuthenticationType);
                 AuthenticationProperties properties = CreateProperties(user.UserName);
-                AuthenticationTicket ticket = new AuthenticationTicket(identity,properties);
+                AuthenticationTicket ticket = new AuthenticationTicket(identity, properties);
 
                 context.Validated(ticket);
             }

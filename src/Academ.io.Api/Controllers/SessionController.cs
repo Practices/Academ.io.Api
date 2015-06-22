@@ -21,11 +21,9 @@ namespace Academ.io.Api.Controllers
         }
 
         [Authorize]
-        public IHttpActionResult GetSession(string id)
+        public IHttpActionResult GetSession(int id)
         {
-            var guid = new Guid(id);
-
-            var disciplines = sessionService.GetSession(guid);
+            var disciplines = sessionService.GetSession(id);
 
             var disciplineViewModels = Mapper.Map<IEnumerable<Discipline>, IEnumerable<DisciplineViewModel>>(disciplines);
 

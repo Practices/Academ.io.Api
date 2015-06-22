@@ -42,6 +42,8 @@ namespace Academ.io.Api
             builder.RegisterType<ApplicationContext>().SingleInstance();
             builder.RegisterType<AcademContext>().SingleInstance();
             builder.RegisterType<UserRepository>().As<IUserRepository>().AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterType<SessionRepository>().As<ISessionRepository>().AsImplementedInterfaces().InstancePerRequest();
+
             builder.RegisterType<StudentService>().As<IStudentService>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<StudentRepository>().As<IStudentRepository>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<SessionService>().As<ISessionService>().AsImplementedInterfaces().InstancePerRequest();

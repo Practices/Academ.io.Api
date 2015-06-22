@@ -22,7 +22,6 @@ namespace Academ.io.Data.AcademContextMigrations
             PopulateMarks(context,testTypes);
 
             var groups = PopulateGroups(context);
-
             
             PopulateStudents(context,groups);
             
@@ -520,6 +519,28 @@ namespace Academ.io.Data.AcademContextMigrations
 
             context.AcademUsers.Add(user);
 
+            context.SaveChanges();
+        }
+
+        private void PopulateSessions(Contexts.AcademContext context)
+        {
+            var sessions = new List<Session>
+            {
+                new Session()
+                {
+                    Name = "«имн€€ сесси€ 2014-2015",
+                    OpenDate = new DateTime(2014, 12, 1),
+                    CloseDate = new DateTime(2015, 2, 7)
+                },
+                new Session()
+                {
+                    Name = "¬есен€€ сесси€ 2014-2015",
+                    OpenDate = new DateTime(2015,6,1),
+                    CloseDate = new DateTime(2015,7,31)
+                }
+            };
+
+            context.Sessions.AddRange(sessions);
             context.SaveChanges();
         }
     }

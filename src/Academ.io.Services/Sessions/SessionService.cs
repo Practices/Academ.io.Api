@@ -15,19 +15,28 @@ namespace Academ.io.Services.Sessions
         private readonly IMarkRepository markRepository;
         private readonly ISessionServiceApi sessionServiceApi;
         private readonly IStudentRepository studentRepository;
+        private readonly ISessionRepository sessionRepository;
 
-        public SessionService(ISessionServiceApi sessionServiceApi, IMarkRepository markRepository, IStudentRepository studentRepository)
+        public SessionService(ISessionServiceApi sessionServiceApi, IMarkRepository markRepository, IStudentRepository studentRepository,ISessionRepository sessionRepository)
         {
             this.sessionServiceApi = sessionServiceApi;
             this.markRepository = markRepository;
             this.studentRepository = studentRepository;
+            this.sessionRepository = sessionRepository;
 
             Mapper.CreateMap<DisciplineModel, Discipline>().ForMember(dest => dest.Mark, opt => opt.Ignore()).ForMember(dest => dest.TestType, opt => opt.Ignore());
         }
 
-        public IEnumerable<Discipline> GetSession(Guid studentId)
+        public IEnumerable<Discipline> GetSession(int studentId)
         {
-            var disciplines = this.sessionServiceApi.GetSessionsByStudent(studentId);
+            var student = studentRepository.GetStudentsById(studentId);
+
+            if(student == null)
+            {
+                return null;
+            }
+
+            var disciplines = this.sessionServiceApi.GetSessionsByStudent(student.StudentIdentity);
 
             var result = FillItems(disciplines);
 
@@ -36,12 +45,10 @@ namespace Academ.io.Services.Sessions
 
         public List<ChartProgressViewModel> GetProgress(int studentId)
         {
-            var student = studentRepository.GetStudentsById(studentId);
-            if(student == null)
-            {
-                return null;
-            }
-            List<Discipline> disciplines = GetSession(student.StudentIdentity).ToList();
+            List<Discipline> disciplines = GetSession(studentId).ToList();
+
+            //проверить если discipline пустой
+
             var data = CalcProgress(disciplines);
             return data;
         }
@@ -105,6 +112,25 @@ namespace Academ.io.Services.Sessions
             }
 
             return data;
+        }
+
+        private void UpdateAveragePoint(IEnumerable<Discipline> disciplines,Student student)
+        {
+            var lastPassDate = disciplines.Max(x => x.TestDate);
+
+            var session = sessionRepository.GetLastSession();
+
+            var point = sessionRepository.GetSessionPoint(student, session);
+
+            if(point == null)
+            {
+                
+            }
+        }
+
+        private double CalculationAveragePoint(int[] marks)
+        {
+            return 0;
         }
     }
 }

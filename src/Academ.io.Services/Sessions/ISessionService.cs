@@ -7,7 +7,7 @@ namespace Academ.io.Services.Sessions
 {
     public interface ISessionService
     {
-        IEnumerable<Discipline> GetSession(Guid studentId);
+        IEnumerable<Discipline> GetSession(int studentId);
         List<ChartProgressViewModel> GetProgress(int studentId);
     }
 }

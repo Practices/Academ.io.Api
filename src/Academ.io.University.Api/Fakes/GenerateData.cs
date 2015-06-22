@@ -106,6 +106,39 @@ namespace Academ.io.University.Api.Fakes
                     Term = 11,
                     TestDate = new DateTime(2015, 01, 15),
                     TestType = 1
+                },
+                new DisciplineModel
+                {
+                    DisciplineId = new Guid("bdf0fd76-35a9-11e3-b8c0-005056960017"),
+                    DisciplineName = "Информационная безопасность",
+                    DisciplineDepartment = "ИУ5",
+                    Mark = 4,
+                    Audlek = 102,
+                    Term = 11,
+                    TestDate = new DateTime(2015, 01, 10),
+                    TestType = 1
+                },
+                new DisciplineModel
+                {
+                    DisciplineId = new Guid("bdff8cec-35a9-11e3-ad27-005056960017"),
+                    DisciplineName = "Анализ временных рядов",
+                    DisciplineDepartment = "ИУ5",
+                    Mark = 2,
+                    Audlek = 68,
+                    Term = 11,
+                    TestDate = new DateTime(2015, 01, 19),
+                    TestType = 1
+                },
+                new DisciplineModel
+                {
+                    DisciplineId = new Guid("bddcfa2e-35a9-11e3-ba25-005056960017"),
+                    DisciplineName = "Автоматизированные банковские системы",
+                    DisciplineDepartment = "ИУ5",
+                    Mark = 2,
+                    Audlek = 95,
+                    Term = 11,
+                    TestDate = new DateTime(2015, 01, 14),
+                    TestType = 1
                 }
             };
 
