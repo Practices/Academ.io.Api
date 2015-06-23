@@ -66,7 +66,7 @@ namespace Academ.io.Services.Students
             return groupAttach;
         }
 
-        public Group GroupRemove(Guid userId, int groupId)
+        public Group RemoveGroup(Guid userId, int groupId)
         {
             return studentRepository.RemoveGroup(userId, groupId);
         }

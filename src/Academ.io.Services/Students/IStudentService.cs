@@ -10,7 +10,7 @@ namespace Academ.io.Services.Students
         Group AddGroup(Guid userId, Group group);
         IEnumerable<Student> GetStudents(Guid userId);
         List<Group> GetGroupsByName(string name);
-        Group GroupRemove(Guid userId, int groupId);
+        Group RemoveGroup(Guid userId, int groupId);
         Student GetStudent(Guid userId, int studentId);
     }
 }

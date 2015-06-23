@@ -65,15 +65,13 @@ namespace Academ.io.Api.Controllers
         }
 
         
-        //        [Authorize]
-        //        public IHttpActionResult DeleteStudent(string id)
-        //        {
-        //            var userId = GetUserId();
-        //            var student = studentService.DeleteStudent(userId, id);
-        //            //            StudentViewModel studentViewModel = new StudentViewModel();
-        //            //            Mapper.Map(student, studentViewModel);
-        //            return Ok();
-        //        }
+        [Authorize]
+        public IHttpActionResult Delete(int id)
+        {
+            var userId = GetUserId();
+            var student = studentService.RemoveGroup(userId, id);
+            return Ok();
+        }
 
         private Guid GetUserId()
         {

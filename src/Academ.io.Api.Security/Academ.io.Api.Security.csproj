@@ -98,6 +98,10 @@
     <Compile Include="ApplicationContextMigrations\201504271957199_DeleteStudentsAndAddFavourite.Designer.cs">
       <DependentUpon>201504271957199_DeleteStudentsAndAddFavourite.cs</DependentUpon>
     </Compile>
+    <Compile Include="ApplicationContextMigrations\201506231257430_fix.cs" />
+    <Compile Include="ApplicationContextMigrations\201506231257430_fix.Designer.cs">
+      <DependentUpon>201506231257430_fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationContextMigrations\Configuration.cs" />
     <Compile Include="Contexts\ApplicationContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -115,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationContextMigrations\201504271957199_DeleteStudentsAndAddFavourite.resx">
       <DependentUpon>201504271957199_DeleteStudentsAndAddFavourite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationContextMigrations\201506231257430_fix.resx">
+      <DependentUpon>201506231257430_fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

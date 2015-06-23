@@ -38,18 +38,16 @@ namespace Academ.io.Data.Repositories
             return group;
         }
 
-        public Group RemoveGroup(Guid userId, int studentId)
+        public Group RemoveGroup(Guid userId, int groupId)
         {
-//            var user = GetUser(userId);
-//            var studentGuid = new Guid(studentId);
-//            var studentAttach = user.Groups.SingleOrDefault(x => x.StudentIdentity == studentGuid);
-//            if(studentAttach != null)
-//            {
-//                user.Groups.Remove(studentAttach);
-//                context.SaveChanges();
-//            }
-//            return studentAttach;
-            return null;
+            var user = GetUser(userId);
+            var groupAttach = user.Groups.SingleOrDefault(x => x.GroupId == groupId);
+            if(groupAttach != null)
+            {
+                user.Groups.Remove(groupAttach);
+                context.SaveChanges();
+            }
+            return groupAttach;
         }
 
         public Student GetStudentsById(Guid userId, int studentId)
