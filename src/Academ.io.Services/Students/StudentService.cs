@@ -22,7 +22,7 @@ namespace Academ.io.Services.Students
 
             Mapper.CreateMap<string, Guid>().ConvertUsing(new GuidTypeConverter());
             Mapper.CreateMap<StudentModel, Student>().ForMember(d=>d.Group,o=>o.Ignore());
-            Mapper.CreateMap<GroupModel, Group>().ForMember(d => d.Students, o => o.Ignore()).ForMember(d => d.Users, o => o.Ignore());
+            Mapper.CreateMap<GroupModel, Group>().ForMember(d => d.Students, o => o.Ignore());
         }
 
         public IEnumerable<Student> GetStudents(Guid userId)

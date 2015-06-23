@@ -10,7 +10,7 @@ namespace Academ.io.Data.Configurations
         {
             HasKey(t => t.GroupId);
             Property(t => t.GroupId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            HasMany(t => t.Users);
+//            HasMany(t => t.Users);
         }
     }
 }

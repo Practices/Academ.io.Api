@@ -14,7 +14,7 @@ namespace Academ.io.Api.Mappers
         protected override void Configure()
         {
             Mapper.CreateMap<StudentViewModel, Student>().ForMember(d => d.Group, o => o.Ignore());
-            Mapper.CreateMap<GroupViewModel, Group>().ForMember(d => d.Users, o => o.Ignore());
+            Mapper.CreateMap<GroupViewModel, Group>();
         }
     }
 }

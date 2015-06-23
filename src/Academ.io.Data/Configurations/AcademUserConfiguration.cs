@@ -7,7 +7,7 @@ namespace Academ.io.Data.Configurations
     {
         public AcademUserConfiguration()
         {
-            HasMany(t => t.Groups);
+            HasMany(t => t.Groups).WithMany();
         }
     }
 }

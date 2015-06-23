@@ -1,9 +1,9 @@
-namespace Academ.io.Data.StudentContextMigrations
+namespace Academ.io.Data.AcademContextMigrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddStudentCollectUserIdFix : DbMigration
+    public partial class EditRelashipUserToGroup : DbMigration
     {
         public override void Up()
         {

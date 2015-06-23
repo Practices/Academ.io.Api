@@ -72,6 +72,10 @@
     <Compile Include="AcademContextMigrations\201505232220238_FixRelasipAcademUserToGroup.Designer.cs">
       <DependentUpon>201505232220238_FixRelasipAcademUserToGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="AcademContextMigrations\201506230950114_EditRelashipUserToGroup.cs" />
+    <Compile Include="AcademContextMigrations\201506230950114_EditRelashipUserToGroup.Designer.cs">
+      <DependentUpon>201506230950114_EditRelashipUserToGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="AcademContextMigrations\Configuration.cs" />
     <Compile Include="Configurations\AcademUserConfiguration.cs" />
     <Compile Include="Configurations\ConfigurationPasstype.cs" />
@@ -107,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AcademContextMigrations\201505232220238_FixRelasipAcademUserToGroup.resx">
       <DependentUpon>201505232220238_FixRelasipAcademUserToGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AcademContextMigrations\201506230950114_EditRelashipUserToGroup.resx">
+      <DependentUpon>201506230950114_EditRelashipUserToGroup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
