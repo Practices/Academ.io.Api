@@ -1,12 +1,12 @@
-﻿using Academ.io.Api.Security.Models;
+﻿using Academ.io.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Academ.io.Api.Security.Contexts
+namespace Academ.io.Data.Contexts
 {
     public class ApplicationContext: IdentityDbContext<ApplicationUser>
     {
         public ApplicationContext()
-                : base("ApplicationContext")
+            : base("AcademContext")
         {
         }
     }

@@ -1,8 +1,6 @@
 ﻿using System.Reflection;
 using System.Web.Http;
 using Academ.io.Api.Mappers;
-using Academ.io.Api.Security.Contexts;
-using Academ.io.Api.Security.Repositories;
 using Academ.io.Data.Contexts;
 using Academ.io.Data.Repositories;
 using Academ.io.Services.Sessions;

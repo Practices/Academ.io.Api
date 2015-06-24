@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Threading.Tasks;
 using Academ.io.Api.Models;
-using Academ.io.Api.Security.Contexts;
-using Academ.io.Api.Security.Models;
+using Academ.io.Data.Contexts;
+using Academ.io.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Academ.io.Api.Security.Repositories
+namespace Academ.io.Data.Repositories
 {
     public class UserRepository: IUserRepository
     {

@@ -31,7 +31,6 @@ namespace Academ.io.Data.Repositories
             {
                 var groupAttach = context.Groups.SingleOrDefault(x => x.GroupGuid == group.GroupGuid) ?? context.Groups.Add(group);
                 user.Groups.Add(groupAttach);
-                context.AcademUsers.AddOrUpdate(user);
                 context.SaveChanges();
                 return groupAttach;
             }
@@ -71,12 +70,9 @@ namespace Academ.io.Data.Repositories
             return context.Students.Find(studentId);
         }
 
-        private AcademUser GetUser(Guid userId)
+        private ApplicationUser GetUser(Guid userId)
         {
-            return context.AcademUsers.Include(x => x.Groups.Select(c => c.Students)).SingleOrDefault(x => x.UserId == userId) ?? context.AcademUsers.Add(new AcademUser
-            {
-                UserId = userId
-            });
+            return context.Users.Include(t=>t.Groups).SingleOrDefault(x => x.Id == userId.ToString());
         }
     }
 }

@@ -3,9 +3,9 @@ using Academ.io.Models;
 
 namespace Academ.io.Data.Configurations
 {
-    public class AcademUserConfiguration:EntityTypeConfiguration<AcademUser>
+    public class UserConfiguration:EntityTypeConfiguration<ApplicationUser>
     {
-        public AcademUserConfiguration()
+        public UserConfiguration()
         {
             HasMany(t => t.Groups).WithMany();
         }

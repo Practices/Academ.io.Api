@@ -1,5 +1,5 @@
 ﻿using System;
-using Academ.io.Api.Security.Providers;
+using Academ.io.Api.Providers;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;

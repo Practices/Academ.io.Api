@@ -3,20 +3,20 @@ using System.Data.Entity;
 using System.Threading;
 using Academ.io.Data.Configurations;
 using Academ.io.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Academ.io.Data.Contexts
 {
-    public class AcademContext: DbContext
+    public class AcademContext: IdentityDbContext<ApplicationUser>
     {
         public AcademContext()
                 : base("AcademContext")
         {
-            this.Configuration.LazyLoadingEnabled = false;
+//            this.Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<Group> Groups { get; set; }
         public DbSet<Student> Students { get; set; }
-        public DbSet<AcademUser> AcademUsers { get; set; }
         public DbSet<Mark> Marks { get; set; }
         public DbSet<TestType> TestTypes { get; set; }
         public DbSet<SessionPoint> SessionPoints { get; set; }
@@ -26,9 +26,9 @@ namespace Academ.io.Data.Contexts
         {
             modelBuilder.Configurations.Add(new StudentConfiguration());
             modelBuilder.Configurations.Add(new GroupConfiguration());
-            modelBuilder.Configurations.Add(new AcademUserConfiguration());
+            modelBuilder.Configurations.Add(new UserConfiguration());
 
-//            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

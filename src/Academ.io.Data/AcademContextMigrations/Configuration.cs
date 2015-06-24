@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using Academ.io.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Academ.io.Data.AcademContextMigrations
 {
@@ -25,7 +27,7 @@ namespace Academ.io.Data.AcademContextMigrations
             
             PopulateStudents(context,groups);
             
-            PopulateAcademUsers(context);
+            PopulateUsers(context);
         }
 
         private List<TestType> PopulateTestTypes(Contexts.AcademContext context)
@@ -504,20 +506,24 @@ namespace Academ.io.Data.AcademContextMigrations
             context.SaveChanges();
         }
 
-        private void PopulateAcademUsers(Contexts.AcademContext context)
+        private void PopulateUsers(Contexts.AcademContext context)
         {
-            var user = new AcademUser
-            {
-                UserId = new Guid("8483d47b-38eb-4a03-bccc-56ea5be5e70b"),
-                Groups = new Collection<Group>()
-                
-            };
-
             var group = context.Groups.ToList();
 
-            user.Groups.Add(group[0]);
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-            context.AcademUsers.Add(user);
+            var user = new ApplicationUser()
+            {
+                UserName = "Test",
+                Email = "test@mail.ru",
+                EmailConfirmed = true,
+            };
+
+            manager.Create(user, "Test12345");
+
+            var userAcadem = context.Users.FirstOrDefault();
+
+            userAcadem.Groups = new Collection<Group>(group);
 
             context.SaveChanges();
         }

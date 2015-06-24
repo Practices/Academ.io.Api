@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Collections.ObjectModel;
+using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Academ.io.Api.Security.Models
+namespace Academ.io.Models
 {
     public class ApplicationUser: IdentityUser
     {
@@ -8,5 +9,6 @@ namespace Academ.io.Api.Security.Models
         public string Middlename { get; set; }
         public string Lastname { get; set; }
         public string Email { get; set; }
+        public Collection<Group> Groups { get; set; }
     }
 }

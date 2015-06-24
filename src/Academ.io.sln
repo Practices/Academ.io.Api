@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academ.io.Api", "Academ.io.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academ.io.Api.Models", "Academ.io.Api.Models\Academ.io.Api.Models.csproj", "{8D99DF67-5ACB-4C29-9343-BD1E08F1E53B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academ.io.Api.Security", "Academ.io.Api.Security\Academ.io.Api.Security.csproj", "{3BA9CFDE-9CCD-4126-80C7-BF73B144824F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academ.io.Data", "Academ.io.Data\Academ.io.Data.csproj", "{6FB52677-9287-44E3-AC55-6B47EE0C806E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academ.io.Models", "Academ.io.Models\Academ.io.Models.csproj", "{96D4A6CA-A175-444D-B974-7F5DE3220B5A}"
@@ -48,14 +46,6 @@ Global
 		{8D99DF67-5ACB-4C29-9343-BD1E08F1E53B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8D99DF67-5ACB-4C29-9343-BD1E08F1E53B}.Test|Any CPU.ActiveCfg = Test|Any CPU
 		{8D99DF67-5ACB-4C29-9343-BD1E08F1E53B}.Test|Any CPU.Build.0 = Test|Any CPU
-		{3BA9CFDE-9CCD-4126-80C7-BF73B144824F}.Debug.Data|Any CPU.ActiveCfg = Debug.Data|Any CPU
-		{3BA9CFDE-9CCD-4126-80C7-BF73B144824F}.Debug.Data|Any CPU.Build.0 = Debug.Data|Any CPU
-		{3BA9CFDE-9CCD-4126-80C7-BF73B144824F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BA9CFDE-9CCD-4126-80C7-BF73B144824F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BA9CFDE-9CCD-4126-80C7-BF73B144824F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BA9CFDE-9CCD-4126-80C7-BF73B144824F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3BA9CFDE-9CCD-4126-80C7-BF73B144824F}.Test|Any CPU.ActiveCfg = Test|Any CPU
-		{3BA9CFDE-9CCD-4126-80C7-BF73B144824F}.Test|Any CPU.Build.0 = Test|Any CPU
 		{6FB52677-9287-44E3-AC55-6B47EE0C806E}.Debug.Data|Any CPU.ActiveCfg = Debug.Data|Any CPU
 		{6FB52677-9287-44E3-AC55-6B47EE0C806E}.Debug.Data|Any CPU.Build.0 = Debug.Data|Any CPU
 		{6FB52677-9287-44E3-AC55-6B47EE0C806E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

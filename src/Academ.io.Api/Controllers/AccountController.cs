@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Academ.io.Api.Models;
-using Academ.io.Api.Security.Models;
-using Academ.io.Api.Security.Repositories;
+using Academ.io.Data.Repositories;
+using Academ.io.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Academ.io.Api.Security.Contexts;
-using Academ.io.Api.Security.Models;
+using Academ.io.Data.Contexts;
+using Academ.io.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 
-namespace Academ.io.Api.Security.Providers
+namespace Academ.io.Api.Providers
 {
     public class CustomAuthorizationServerProvider: OAuthAuthorizationServerProvider
     {

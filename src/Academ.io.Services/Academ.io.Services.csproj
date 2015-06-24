@@ -82,10 +82,6 @@
       <Project>{8D99DF67-5ACB-4C29-9343-BD1E08F1E53B}</Project>
       <Name>Academ.io.Api.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Academ.io.Api.Security\Academ.io.Api.Security.csproj">
-      <Project>{3BA9CFDE-9CCD-4126-80C7-BF73B144824F}</Project>
-      <Name>Academ.io.Api.Security</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Academ.io.Data\Academ.io.Data.csproj">
       <Project>{6FB52677-9287-44E3-AC55-6B47EE0C806E}</Project>
       <Name>Academ.io.Data</Name>
