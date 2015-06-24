@@ -27,12 +27,7 @@ namespace Academ.io.Services.Students
 
         public IEnumerable<Student> GetStudents(Guid userId)
         {
-            var groups = studentRepository.GetGroupsByUserId(userId);
-            var students = new List<Student>();
-            foreach(Group item in groups)
-            {
-                students.AddRange(item.Students);
-            }
+            var students  = studentRepository.GetStudentsByUserId(userId);
             return students;
         }
 

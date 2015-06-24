@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Academ.io.Data.Contexts;
 using Academ.io.Models;
 
@@ -18,16 +16,16 @@ namespace Academ.io.Data.Repositories
             this.context = context;
         }
 
-        public List<Group> GetGroupsByUserId(Guid userId)
+        public List<Student> GetStudentsByUserId(Guid userId)
         {
             var user = GetUser(userId);
-            return user.Groups.ToList();
+            return user.Groups.SelectMany(t => t.Students).ToList();
         }
 
         public Group AddGroup(Guid userId, Group group)
         {
             var user = GetUser(userId);
-            if (user.Groups.SingleOrDefault(x => x.GroupGuid == group.GroupGuid) == null)
+            if(user.Groups.SingleOrDefault(x => x.GroupGuid == group.GroupGuid) == null)
             {
                 var groupAttach = context.Groups.SingleOrDefault(x => x.GroupGuid == group.GroupGuid) ?? context.Groups.Add(group);
                 user.Groups.Add(groupAttach);
@@ -51,7 +49,7 @@ namespace Academ.io.Data.Repositories
 
         public Student GetStudentsById(Guid userId, int studentId)
         {
-            return context.Students.Include(t=>t.Group).SingleOrDefault(x=>x.StudentId == studentId);
+            return context.Students.Include(t => t.Group).SingleOrDefault(x => x.StudentId == studentId);
         }
 
         public void AddStudents(List<Student> students, Group group)
@@ -72,7 +70,7 @@ namespace Academ.io.Data.Repositories
 
         private ApplicationUser GetUser(Guid userId)
         {
-            return context.Users.Include(t=>t.Groups).SingleOrDefault(x => x.Id == userId.ToString());
+            return context.Users.Include(t => t.Groups.Select(e => e.Students)).SingleOrDefault(x => x.Id == userId.ToString());
         }
     }
 }
