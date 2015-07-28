@@ -37,7 +37,8 @@ namespace Academ.io.Api
 
         private static void RegisterComponents(ContainerBuilder builder)
         {
-            builder.RegisterType<ApplicationContext>().SingleInstance();
+            builder.RegisterType<ApplicationContext>().AsImplementedInterfaces().InstancePerRequest();
+
             builder.RegisterType<AcademContext>().SingleInstance();
             builder.RegisterType<UserRepository>().As<IUserRepository>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<SessionRepository>().As<ISessionRepository>().AsImplementedInterfaces().InstancePerRequest();
