@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 using Academ.io.Data.Contexts;
 using Academ.io.Models;
@@ -11,6 +13,13 @@ namespace Academ.io.Api.Providers
 {
     public class CustomAuthorizationServerProvider: OAuthAuthorizationServerProvider
     {
+        private readonly Func<UserManager<ApplicationUser>> userManagerFactory;
+
+        public CustomAuthorizationServerProvider(Func<UserManager<ApplicationUser>> userManagerFactory)
+        {
+            this.userManagerFactory = userManagerFactory;
+        }
+
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();
@@ -24,7 +33,7 @@ namespace Academ.io.Api.Providers
                                                          "*"
                                                      });
 
-            using(var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationContext())))
+            using (UserManager<ApplicationUser> userManager = userManagerFactory())
             {
                 ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 

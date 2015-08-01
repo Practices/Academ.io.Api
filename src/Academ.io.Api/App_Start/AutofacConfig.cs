@@ -3,6 +3,7 @@ using System.Web.Http;
 using Academ.io.Api.Mappers;
 using Academ.io.Data.Contexts;
 using Academ.io.Data.Repositories;
+using Academ.io.Models;
 using Academ.io.Services.Sessions;
 using Academ.io.Services.Students;
 using Academ.io.University.Api.Fakes;
@@ -10,6 +11,8 @@ using Academ.io.University.Api.Services.Contingents;
 using Academ.io.University.Api.Services.Sessions;
 using Autofac;
 using Autofac.Integration.WebApi;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Owin;
 
 namespace Academ.io.Api
@@ -37,9 +40,14 @@ namespace Academ.io.Api
 
         private static void RegisterComponents(ContainerBuilder builder)
         {
-            builder.RegisterType<ApplicationContext>().AsImplementedInterfaces().InstancePerRequest();
+            builder.Register(c => new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationContext()))
+            {
+                /*Avoids UserStore invoking SaveChanges on every actions.*/
+                //AutoSaveChanges = false
+            }).As<UserManager<ApplicationUser>>().InstancePerRequest();
 
             builder.RegisterType<AcademContext>().SingleInstance();
+            
             builder.RegisterType<UserRepository>().As<IUserRepository>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<SessionRepository>().As<ISessionRepository>().AsImplementedInterfaces().InstancePerRequest();
 
@@ -49,7 +57,6 @@ namespace Academ.io.Api
             builder.RegisterType<SessionServiceApiFake>().As<ISessionServiceApi>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<MarkRepository>().As<IMarkRepository>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<StudentServiceApiFake>().As<IStudentServiceApi>().AsImplementedInterfaces().InstancePerRequest();
-
         }
     }
 }

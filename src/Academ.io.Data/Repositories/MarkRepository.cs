@@ -8,26 +8,28 @@ namespace Academ.io.Data.Repositories
 {
     public class MarkRepository: IMarkRepository
     {
-        private readonly AcademContext sessionContext;
+        public List<Mark> Marks { get; private set; }
+        public List<TestType> TestTypes { get; private set; }
 
         public MarkRepository(AcademContext sessionContext)
         {
-            this.sessionContext = sessionContext;
+            Marks = sessionContext.Marks.Include(x => x.TestType).ToList();
+            TestTypes = sessionContext.TestTypes.ToList();
         }
 
         public Mark GetMark(int mark, int type)
         {
-            return this.sessionContext.Marks.Include(x => x.TestType).Where(x => x.Grade == mark).FirstOrDefault(x => x.TestType.TestTypeId == type);
+            return this.Marks.Where(x => x.Grade == mark).FirstOrDefault(x => x.TestType.TestTypeId == type);
         }
 
         public List<Mark> GetMarks()
         {
-            return this.sessionContext.Marks.Include(x => x.TestType).ToList();
+            return Marks;
         }
 
         public List<TestType> GetTestTypes()
         {
-            return this.sessionContext.TestTypes.ToList();
+            return this.TestTypes;
         }
     }
 }
