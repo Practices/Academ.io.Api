@@ -1,15 +1,11 @@
 ﻿using System.Reflection;
 using System.Web.Http;
 using Academ.io.Api.Mappers;
+using Academ.io.Data;
 using Academ.io.Data.Contexts;
-using Academ.io.Data.Repositories;
 using Academ.io.Models;
 using Academ.io.Services;
-using Academ.io.Services.Sessions;
-using Academ.io.Services.Students;
-using Academ.io.University.Api.Fakes;
-using Academ.io.University.Api.Services.Contingents;
-using Academ.io.University.Api.Services.Sessions;
+using Academ.io.University.Api;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Microsoft.AspNet.Identity;
@@ -46,16 +42,10 @@ namespace Academ.io.Api
                 /*Avoids UserStore invoking SaveChanges on every actions.*/
                 //AutoSaveChanges = false
             }).As<UserManager<ApplicationUser>>().InstancePerRequest();
+            //            builder.RegisterType<SessionServiceApiFake>().As<ISessionServiceApi>();
 
-            builder.RegisterType<AcademContext>().SingleInstance();
-            
-            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest();
-
-            builder.RegisterType<StudentService>().As<IStudentService>().InstancePerRequest();
-            builder.RegisterType<SessionService>().As<ISessionService>().InstancePerRequest();
-            builder.RegisterType<SessionServiceApiFake>().As<ISessionServiceApi>().InstancePerRequest();
-            builder.RegisterType<StudentServiceApiFake>().As<IStudentServiceApi>().InstancePerRequest();
-
+            builder.RegisterModule<UniversityApiModule>();
+            builder.RegisterModule<DataModule>();
             builder.RegisterModule<ServiceModule>();
         }
     }
