@@ -4,6 +4,7 @@ using Academ.io.Api.Mappers;
 using Academ.io.Data.Contexts;
 using Academ.io.Data.Repositories;
 using Academ.io.Models;
+using Academ.io.Services;
 using Academ.io.Services.Sessions;
 using Academ.io.Services.Students;
 using Academ.io.University.Api.Fakes;
@@ -48,15 +49,14 @@ namespace Academ.io.Api
 
             builder.RegisterType<AcademContext>().SingleInstance();
             
-            builder.RegisterType<UserRepository>().As<IUserRepository>().AsImplementedInterfaces().InstancePerRequest();
-            builder.RegisterType<SessionRepository>().As<ISessionRepository>().AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest();
 
-            builder.RegisterType<StudentService>().As<IStudentService>().AsImplementedInterfaces().InstancePerRequest();
-            builder.RegisterType<StudentRepository>().As<IStudentRepository>().AsImplementedInterfaces().InstancePerRequest();
-            builder.RegisterType<SessionService>().As<ISessionService>().AsImplementedInterfaces().InstancePerRequest();
-            builder.RegisterType<SessionServiceApiFake>().As<ISessionServiceApi>().AsImplementedInterfaces().InstancePerRequest();
-            builder.RegisterType<MarkRepository>().As<IMarkRepository>().AsImplementedInterfaces().InstancePerRequest();
-            builder.RegisterType<StudentServiceApiFake>().As<IStudentServiceApi>().AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterType<StudentService>().As<IStudentService>().InstancePerRequest();
+            builder.RegisterType<SessionService>().As<ISessionService>().InstancePerRequest();
+            builder.RegisterType<SessionServiceApiFake>().As<ISessionServiceApi>().InstancePerRequest();
+            builder.RegisterType<StudentServiceApiFake>().As<IStudentServiceApi>().InstancePerRequest();
+
+            builder.RegisterModule<ServiceModule>();
         }
     }
 }
