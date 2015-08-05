@@ -19,10 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academ.io.Services.Tests", "Academ.io.Services.Tests\Academ.io.Services.Tests.csproj", "{8E2E858D-4E02-44F5-AF78-87F469111AB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academ.io.Automapper.UnitTests", "Academ.io.Automapper.UnitTests\Academ.io.Automapper.UnitTests.csproj", "{C6E95FFD-65BE-4F41-889D-8AEFE08463AF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academ.io.Data.UnitTests", "Academ.io.Data.UnitTests\Academ.io.Data.UnitTests.csproj", "{CF2E7185-1070-4893-B4B3-C3EA1DC5763D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug.Data|Any CPU = Debug.Data|Any CPU
@@ -85,25 +81,11 @@ Global
 		{8E2E858D-4E02-44F5-AF78-87F469111AB1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8E2E858D-4E02-44F5-AF78-87F469111AB1}.Test|Any CPU.ActiveCfg = Test|Any CPU
 		{8E2E858D-4E02-44F5-AF78-87F469111AB1}.Test|Any CPU.Build.0 = Test|Any CPU
-		{C6E95FFD-65BE-4F41-889D-8AEFE08463AF}.Debug.Data|Any CPU.ActiveCfg = Debug.Data|Any CPU
-		{C6E95FFD-65BE-4F41-889D-8AEFE08463AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6E95FFD-65BE-4F41-889D-8AEFE08463AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6E95FFD-65BE-4F41-889D-8AEFE08463AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6E95FFD-65BE-4F41-889D-8AEFE08463AF}.Test|Any CPU.ActiveCfg = Test|Any CPU
-		{C6E95FFD-65BE-4F41-889D-8AEFE08463AF}.Test|Any CPU.Build.0 = Test|Any CPU
-		{CF2E7185-1070-4893-B4B3-C3EA1DC5763D}.Debug.Data|Any CPU.ActiveCfg = Debug.Data|Any CPU
-		{CF2E7185-1070-4893-B4B3-C3EA1DC5763D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF2E7185-1070-4893-B4B3-C3EA1DC5763D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF2E7185-1070-4893-B4B3-C3EA1DC5763D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF2E7185-1070-4893-B4B3-C3EA1DC5763D}.Test|Any CPU.ActiveCfg = Test|Any CPU
-		{CF2E7185-1070-4893-B4B3-C3EA1DC5763D}.Test|Any CPU.Build.0 = Test|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8E2E858D-4E02-44F5-AF78-87F469111AB1} = {95983848-634E-4A34-8F02-65D8909AAE20}
-		{C6E95FFD-65BE-4F41-889D-8AEFE08463AF} = {95983848-634E-4A34-8F02-65D8909AAE20}
-		{CF2E7185-1070-4893-B4B3-C3EA1DC5763D} = {95983848-634E-4A34-8F02-65D8909AAE20}
 	EndGlobalSection
 EndGlobal
