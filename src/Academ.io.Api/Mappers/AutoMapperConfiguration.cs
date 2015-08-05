@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Academ.io.Services;
+using AutoMapper;
 
 namespace Academ.io.Api.Mappers
 {
@@ -10,6 +11,7 @@ namespace Academ.io.Api.Mappers
              {
                  mapper.AddProfile<ViewModelToDomainMappingProfile>();
                  mapper.AddProfile<DomainToViewModelMappingProfile>();
+                 mapper.AddProfile<ServicesMappingProfile>();
              });
          }
     }

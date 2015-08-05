@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Academ.io.Data.Repositories;
 using Academ.io.Models;
-using Academ.io.University.Api.Converters;
-using Academ.io.University.Api.Models;
 using Academ.io.University.Api.Services.Contingents;
 using AutoMapper;
 
@@ -19,15 +17,11 @@ namespace Academ.io.Services.Students
         {
             this.studentRepository = studentRepository;
             this.studentServiceApi = studentServiceApi;
-
-            Mapper.CreateMap<string, Guid>().ConvertUsing(new GuidTypeConverter());
-            Mapper.CreateMap<StudentModel, Student>().ForMember(d=>d.Group,o=>o.Ignore());
-            Mapper.CreateMap<GroupModel, Group>().ForMember(d => d.Students, o => o.Ignore());
         }
 
         public IEnumerable<Student> GetStudents(Guid userId)
         {
-            var students  = studentRepository.GetStudentsByUserId(userId);
+            var students = studentRepository.GetStudentsByUserId(userId);
             return students;
         }
 

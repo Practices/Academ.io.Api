@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using Academ.io.Api.Models;
 using Academ.io.Models;
@@ -28,18 +27,6 @@ namespace Academ.io.Api.Controllers
             var disciplineViewModels = Mapper.Map<IEnumerable<Discipline>, IEnumerable<DisciplineViewModel>>(disciplines);
 
             return Ok(disciplineViewModels);
-        }
-
-        [Authorize]
-        [Route("{id}/progress")]
-        public IHttpActionResult GetSessionProgress(int id)
-        {
-            var data = sessionService.GetProgress(id);
-            if(data == null)
-            {
-                return BadRequest("Not found student");
-            }
-            return Ok(data);
         }
     }
 }
