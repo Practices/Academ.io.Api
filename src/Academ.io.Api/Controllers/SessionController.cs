@@ -1,0 +1,32 @@
+﻿using System.Collections.Generic;
+using System.Web.Http;
+using Academ.io.Api.Models;
+using Academ.io.Models;
+using Academ.io.Services.Sessions;
+using AutoMapper;
+
+namespace Academ.io.Api.Controllers
+{
+    [RoutePrefix("api/session")]
+    public class SessionController: ApiController
+    {
+        private readonly ISessionService sessionService;
+
+        public SessionController(ISessionService sessionService)
+        {
+            this.sessionService = sessionService;
+
+            Mapper.CreateMap<Discipline, DisciplineViewModel>().ForMember(o => o.TestTypeId, m => m.MapFrom(s => s.TestType.TestTypeId));
+        }
+
+        [Authorize]
+        public IHttpActionResult GetSession(int id)
+        {
+            var disciplines = sessionService.GetSession(id);
+
+            var disciplineViewModels = Mapper.Map<IEnumerable<Discipline>, IEnumerable<DisciplineViewModel>>(disciplines);
+
+            return Ok(disciplineViewModels);
+        }
+    }
+}

@@ -29,12 +29,44 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug.Data|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug.Data\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\lib\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\lib\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -46,30 +78,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contexts\StudentContext.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IStudentRepository.cs" />
-    <Compile Include="Repositories\StudentRepository.cs" />
-    <Compile Include="StudentContextMigrations\201504091005235_Init.cs" />
-    <Compile Include="StudentContextMigrations\201504091005235_Init.Designer.cs">
-      <DependentUpon>201504091005235_Init.cs</DependentUpon>
+    <Compile Include="AcademContextMigrations\201506232112367_Init.cs" />
+    <Compile Include="AcademContextMigrations\201506232112367_Init.Designer.cs">
+      <DependentUpon>201506232112367_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="StudentContextMigrations\Configuration.cs" />
+    <Compile Include="AcademContextMigrations\201506232121398_AddM-M.cs" />
+    <Compile Include="AcademContextMigrations\201506232121398_AddM-M.Designer.cs">
+      <DependentUpon>201506232121398_AddM-M.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AcademContextMigrations\Configuration.cs" />
+    <Compile Include="Configurations\UserConfiguration.cs" />
+    <Compile Include="Configurations\ConfigurationPasstype.cs" />
+    <Compile Include="Configurations\GroupConfiguration.cs" />
+    <Compile Include="Configurations\MarkConfiguration.cs" />
+    <Compile Include="Configurations\SessionConfiguration.cs" />
+    <Compile Include="Configurations\SessionPointConfiguration.cs" />
+    <Compile Include="Configurations\StudentConfiguration.cs" />
+    <Compile Include="Contexts\AcademContext.cs" />
+    <Compile Include="Contexts\ApplicationContext.cs" />
+    <Compile Include="Contexts\SessionContext.cs" />
+    <Compile Include="Contexts\StudentContext.cs" />
+    <Compile Include="DataModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IMarkRepository.cs" />
+    <Compile Include="Repositories\ISessionRepository.cs" />
+    <Compile Include="Repositories\IStudentRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\MarkRepository.cs" />
+    <Compile Include="Repositories\SessionRepository.cs" />
+    <Compile Include="Repositories\StudentRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Academ.io.Api.Models\Academ.io.Api.Models.csproj">
+      <Project>{8D99DF67-5ACB-4C29-9343-BD1E08F1E53B}</Project>
+      <Name>Academ.io.Api.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Academ.io.Models\Academ.io.Models.csproj">
       <Project>{96D4A6CA-A175-444D-B974-7F5DE3220B5A}</Project>
       <Name>Academ.io.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="StudentContextMigrations\201504091005235_Init.resx">
-      <DependentUpon>201504091005235_Init.cs</DependentUpon>
+    <EmbeddedResource Include="AcademContextMigrations\201506232112367_Init.resx">
+      <DependentUpon>201506232112367_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AcademContextMigrations\201506232121398_AddM-M.resx">
+      <DependentUpon>201506232121398_AddM-M.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

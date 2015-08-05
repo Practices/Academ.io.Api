@@ -1,11 +1,15 @@
 ﻿using System.Reflection;
 using System.Web.Http;
-using Academ.io.Api.Security.Contexts;
-using Academ.io.Api.Security.Repositories;
+using Academ.io.Api.Mappers;
+using Academ.io.Data;
 using Academ.io.Data.Contexts;
-using Academ.io.Data.Repositories;
+using Academ.io.Models;
+using Academ.io.Services;
+using Academ.io.University.Api;
 using Autofac;
 using Autofac.Integration.WebApi;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Owin;
 
 namespace Academ.io.Api
@@ -15,6 +19,7 @@ namespace Academ.io.Api
         public static void Configure(IAppBuilder app, HttpConfiguration config)
         {
             ConfigureAutofacContainer(app, config);
+            AutoMapperConfiguration.Configure();
         }
 
         private static void ConfigureAutofacContainer(IAppBuilder app, HttpConfiguration config)
@@ -32,11 +37,16 @@ namespace Academ.io.Api
 
         private static void RegisterComponents(ContainerBuilder builder)
         {
-            builder.RegisterType<ApplicationContext>().SingleInstance();
-            builder.RegisterType<StudentContext>().SingleInstance();
-            builder.RegisterType<UserRepository>().As<IUserRepository>().AsImplementedInterfaces().InstancePerRequest();
-            builder.RegisterType<StudentRepository>().As<IStudentRepository>().AsImplementedInterfaces().InstancePerRequest();
+            builder.Register(c => new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationContext()))
+            {
+                /*Avoids UserStore invoking SaveChanges on every actions.*/
+                //AutoSaveChanges = false
+            }).As<UserManager<ApplicationUser>>().InstancePerRequest();
+            //            builder.RegisterType<SessionServiceApiFake>().As<ISessionServiceApi>();
 
+            builder.RegisterModule<UniversityApiModule>();
+            builder.RegisterModule<DataModule>();
+            builder.RegisterModule<ServiceModule>();
         }
     }
 }

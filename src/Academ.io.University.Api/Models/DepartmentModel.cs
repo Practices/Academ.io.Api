@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AcademicAnalysis.ElectronicUniversityServices.Models
+namespace Academ.io.University.Api.Models
 {
     public class DepartmentModel
     {

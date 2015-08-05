@@ -2,9 +2,9 @@
 using Microsoft.Owin;
 using Owin;
 
+[assembly: OwinStartup(typeof(Academ.io.Api.Startup))]
 namespace Academ.io.Api
 {
-    [assembly: OwinStartup(typeof(Startup))]
     public class Startup
     {
         public void Configuration(IAppBuilder app)
